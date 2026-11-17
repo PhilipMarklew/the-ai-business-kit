@@ -14,7 +14,7 @@ Small business owners who want to be found, trusted and run better online. Most 
 
 ## Product Purpose
 
-The AI Business Kit is a blog with free tools. Articles lead. Tools sit inside and beside them at `/tools/<name>`. The goal is audience, not revenue. A visit succeeds when the visitor joins the email list. A visitor who isn't ready to sign up should follow on TikTok or YouTube Shorts, which also counts towards the audience goal.
+The AI Business Kit is a blog with free tools. Articles lead. Tools sit inside and beside them at `/tools/<name>`. The goal is audience. The site earns no revenue. A visit succeeds when the visitor joins the email list. A visitor who isn't ready to sign up should follow on TikTok or YouTube Shorts, which also counts towards the audience goal.
 
 ## Positioning
 
@@ -41,10 +41,10 @@ Clear and capable. A visitor should leave thinking "this explains it plainly, an
 
 ## Design Principles
 
-1. Show, don't promise. Use real tools and real examples, never hype.
-2. Plain first. A non-technical owner on a phone understands every page.
-3. Earn the signup. Value comes before the ask. No pop-ups.
-4. Tech-confident, not tech-scary. Runpod's polish, without the jargon.
+1. Back every claim with something real. Use real tools and real examples, and never hype.
+2. Write every page so a non-technical owner reading on a phone understands it.
+3. Give value before asking for an email. No pop-ups.
+4. Look as polished and confident as Runpod, and explain everything in plain words a non-technical owner understands.
 
 ## Accessibility & Inclusion
 

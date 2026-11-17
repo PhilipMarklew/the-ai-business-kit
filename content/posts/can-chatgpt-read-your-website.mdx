@@ -1,6 +1,6 @@
 ---
 title: "Can ChatGPT read your website? Check one small file first"
-description: "Before you worry about showing up in AI search, check your robots.txt. It takes two minutes and it's the first thing that can quietly shut you out."
+description: "Before you worry about showing up in AI search, check your robots.txt. It takes two minutes, and a single wrong line in it can stop AI tools reading your site without you ever knowing."
 topic: get-found
 date: 2026-11-17
 draft: true
@@ -10,13 +10,13 @@ A lot of small business owners are asking how to show up when someone asks ChatG
 
 Can the AI tools actually read your website?
 
-## The file that decides
+## What robots.txt is and why AI tools check it
 
 Every website can have a small text file called `robots.txt`. It sits at the root of your site, so for most people it's at `yourdomain.com/robots.txt`. It tells automated visitors, the crawlers, which parts of the site they're allowed to read.
 
 Search engines respect it. The big AI companies say their crawlers respect it too. So if your robots.txt blocks a crawler, that crawler doesn't read your pages. And if it can't read them, it's hard for that tool to recommend you.
 
-## How to check yours
+## How to check your own robots.txt
 
 Open a browser and type your domain followed by `/robots.txt`. You'll see one of three things.
 
@@ -26,7 +26,7 @@ Open a browser and type your domain followed by `/robots.txt`. You'll see one of
 
 A line that says `Disallow: /` under `User-agent: *` blocks every crawler from the whole site. I've seen this left behind after a website build, because developers often block crawlers while a site is unfinished and then forget to take it off.
 
-## The names to look for
+## The crawler names worth looking for
 
 Each crawler has a name, and the file can treat them differently. These are the ones I'd check for first:
 
@@ -37,9 +37,9 @@ Each crawler has a name, and the file can treat them differently. These are the 
 
 If any of those names appear with `Disallow: /` underneath, that tool is being told to stay out.
 
-## What to do if you're blocked
+## What to do if your site is blocking them
 
-If you built the site yourself on a platform like Squarespace or Wix, look in the SEO or crawler settings rather than editing the file by hand. If someone built it for you, send them this page and ask them to allow the crawlers you want.
+If you built the site yourself on a platform like Squarespace or Wix, look in the SEO or crawler settings. Those platforms usually manage the file for you. If someone built it for you, send them this page and ask them to allow the crawlers you want.
 
 And if the file looks confusing, that's normal. It's an old format with a few odd rules.
 

@@ -5,6 +5,15 @@ description: Write website content, blog posts, and social media in Phil's natur
 
 # Phil's Writing Style Guide
 
+> **Non-negotiable rules for this project.** These override everything else in this guide.
+>
+> 1. Never use "quietly" as an adverb, unless the thing makes a real sound and you are literally saying it is making that sound at a lower volume.
+> 2. Never write contrast-framing sentences such as "Not X, but Y", "Not X, or Y, but Z", "X, not Y" or "It's not about X, it's about Y". State the point directly.
+> 3. Headings describe what the section is about in plain human terms. Never two short clipped sentences, and never a clever label that only makes sense after reading the section.
+>
+> The full wording and a quick check are in the project CLAUDE.md under "Writing rules (non-negotiable)".
+
+
 ## Core voice
 
 Phil's writing is direct, plain-spoken, and practical. He writes the way a knowledgeable person talks — no fluff, no filler, no trying to sound impressive. He makes his point and moves on. The writing should feel like it came from a real person with real opinions, not from a content template.
