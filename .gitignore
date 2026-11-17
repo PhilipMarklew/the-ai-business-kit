@@ -42,3 +42,6 @@ next-env.d.ts
 
 # keep the example file in git
 !.env.example
+
+# browser check screenshots
+/.playwright-mcp/

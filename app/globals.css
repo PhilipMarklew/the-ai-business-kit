@@ -2,87 +2,233 @@
 @import "tw-animate-css";
 
 /*
- * Design tokens. Source: docs/specs/S00-1-visual-direction.md (Noor).
- * This is the ONE place to change colour, type and radius. Raw values live in
- * plain variables so dark mode is a single media query (no toggle, no flash).
+ * Design tokens. Source: PRODUCT.md + the craft brief of 17 Nov 2026
+ * (dark brand look, coral accent, Manrope). This is the ONE place to change
+ * colour, type and radius.
+ *
+ * Dark is the brand default. Phones set to light mode get the light set.
+ * Contrast (WCAG 2.x, computed 17 Nov 2026):
+ *   dark  ink/canvas 17.5  muted/canvas 8.7  link/canvas 8.4  on-accent/accent 7.3
+ *   light ink/canvas 17.9  muted/canvas 7.1  link/canvas 5.9  on-accent/accent 7.3
+ * Rules that follow from the numbers:
+ *   - Text on a coral fill is always --on-accent (near-black). White on coral is 2.4.
+ *   - Coral text uses --link, never --accent (light-mode --accent on white is 2.6).
+ *   - --line is decorative only (1.3-1.5). Input borders use --muted.
  */
 :root {
-  --paper: oklch(0.985 0.006 85);
-  --surface: oklch(0.96 0.008 85);
-  --ink: oklch(0.22 0.012 60);
-  --muted: oklch(0.48 0.012 60);
-  --accent: oklch(0.52 0.16 38);
-  --accent-hover: oklch(0.46 0.15 38);
-  --on-accent: oklch(1 0 0);
-  --line: oklch(0.88 0.01 80);
-  color-scheme: light dark;
+  --canvas: oklch(0.16 0.006 28);
+  --surface: oklch(0.205 0.008 28);
+  --raised: oklch(0.25 0.01 28);
+  --ink: oklch(0.965 0.004 28);
+  --muted: oklch(0.75 0.01 28);
+  --line: oklch(0.31 0.01 28);
+  --accent: oklch(0.72 0.16 28);
+  --accent-hover: oklch(0.78 0.14 30);
+  --link: oklch(0.76 0.15 29);
+  --on-accent: oklch(0.16 0.006 28);
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --paper: oklch(0.18 0.008 60);
-    --surface: oklch(0.23 0.01 60);
-    --ink: oklch(0.95 0.006 85);
-    --muted: oklch(0.74 0.01 70);
-    --accent: oklch(0.72 0.14 45);
-    /* Checked 17 Nov 2026: 9.0:1 on paper, 8.1:1 on surface, 9.0:1 under on-accent text. */
-    --accent-hover: oklch(0.78 0.13 45);
-    --on-accent: oklch(0.18 0.008 60);
-    --line: oklch(0.30 0.01 60);
+    --canvas: oklch(0.995 0.002 28);
+    --surface: oklch(0.97 0.005 28);
+    --raised: oklch(0.94 0.007 28);
+    --ink: oklch(0.2 0.01 28);
+    --muted: oklch(0.46 0.012 28);
+    --line: oklch(0.9 0.008 28);
+    --accent: oklch(0.72 0.16 28);
+    --accent-hover: oklch(0.66 0.17 28);
+    --link: oklch(0.52 0.17 28);
+    --on-accent: oklch(0.16 0.006 28);
+    color-scheme: light;
   }
 }
 
 @theme inline {
-  --color-paper: var(--paper);
+  --color-canvas: var(--canvas);
   --color-surface: var(--surface);
+  --color-raised: var(--raised);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-link: var(--link);
   --color-on-accent: var(--on-accent);
-  --color-line: var(--line);
 
   /* shadcn semantic names, pointed at the tokens above (no second palette). */
-  --color-background: var(--paper);
+  --color-background: var(--canvas);
   --color-foreground: var(--ink);
   --color-primary: var(--accent);
   --color-primary-foreground: var(--on-accent);
   --color-border: var(--line);
   --color-input: var(--muted);
-  --color-ring: var(--accent);
+  --color-ring: var(--link);
   --color-destructive: var(--ink);
+
+  /* Set by next/font in app/layout.tsx. */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  /* Modular scale, ratio ~1.33 between heading steps. */
+  --text-display: clamp(2.25rem, 1.5rem + 3.6vw, 4rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.035em;
+  --text-headline: clamp(1.75rem, 1.35rem + 1.9vw, 2.75rem);
+  --text-headline--line-height: 1.1;
+  --text-headline--letter-spacing: -0.03em;
+  --text-title: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-title--line-height: 1.25;
+  --text-title--letter-spacing: -0.015em;
 
-  --text-display: clamp(2rem, 1.4rem + 3vw, 3.25rem);
-  --text-display--line-height: 1.08;
-  --text-display--letter-spacing: -0.02em;
+  --container-measure: 42rem; /* max-w-measure: reading column, ~68ch */
+  --container-page: 76rem; /* max-w-page: header, footer, wide sections */
 
-  --container-measure: 40rem; /* max-w-measure: reading column */
-  --container-page: 68rem; /* max-w-page: header, footer, wide sections */
+  --radius-control: 0.625rem; /* rounded-control: buttons, inputs */
+  --radius-panel: 1.25rem; /* rounded-panel: covers, bands, panels */
 
-  --radius-control: 0.5rem; /* rounded-control: buttons, inputs, cards */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --animate-rise: rise 700ms var(--ease-out-quart) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
 }
 
 @layer base {
   html {
-    background: var(--paper);
+    background: var(--canvas);
     color: var(--ink);
     font-family: var(--font-sans);
     font-size: 106.25%;
   }
+  body {
+    background: var(--canvas);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
   a {
-    color: var(--accent);
+    color: var(--link);
     text-underline-offset: 0.2em;
   }
   a:hover {
-    color: var(--accent-hover);
+    color: var(--ink);
   }
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--link);
     outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Article body. MDX renders plain HTML elements, so they are styled here
+ * rather than with per-element classes.
+ */
+@layer components {
+  .prose {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .prose > * + * {
+    margin-top: 1.25em;
+  }
+  .prose h2 {
+    margin-top: 2.25em;
+    font-size: var(--text-title);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    font-weight: 750;
+    scroll-margin-top: 1.5rem;
+  }
+  .prose h3 {
+    margin-top: 1.75em;
+    font-size: 1.125rem;
+    font-weight: 700;
+    scroll-margin-top: 1.5rem;
+  }
+  .prose h2 + *,
+  .prose h3 + * {
+    margin-top: 0.6em;
+  }
+  .prose ul,
+  .prose ol {
+    padding-left: 1.25em;
+  }
+  .prose ul {
+    list-style: disc;
+  }
+  .prose ol {
+    list-style: decimal;
+  }
+  .prose li + li {
+    margin-top: 0.4em;
+  }
+  .prose li::marker {
+    color: var(--muted);
+  }
+  .prose strong {
+    font-weight: 700;
+  }
+  .prose a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+  .prose code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: var(--raised);
+    border-radius: 0.35rem;
+    padding: 0.1em 0.35em;
+  }
+  .prose pre {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    padding: 1rem 1.125rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+  }
+  .prose blockquote {
+    background: var(--surface);
+    border-radius: var(--radius-control);
+    padding: 1rem 1.25rem;
+    color: var(--muted);
+  }
+  .prose hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 2.5em 0;
   }
 }

@@ -1,3 +1,5 @@
+> **Superseded 17 Nov 2026.** Phil moved the site to a blog-with-tools layout with a dark brand look, coral accent and Manrope (see PRODUCT.md and app/globals.css). This spec is kept for history. Its signup-placement and "don't" rules still apply.
+
 # Spec: S00-1 Visual direction
 Date: 2026-11-17 | Author: Noor | Status: Draft for Phil | Feeds: Yuki (apply after skeleton)
 
