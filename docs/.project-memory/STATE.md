@@ -1,41 +1,48 @@
 # STATE
 
-## Since last session (2026-11-17)
-- Project memory bootstrapped: CLAUDE.md, STATE.md, DECISIONS.md, ARCHITECTURE.md (stub)
-- ARCHITECTURE.md is a stub; Marcus's note will fill it
-- MISSING: keyword-shortlist-and-content-plan.xlsx not in project folder
+## Since last session (2026-11-17, later)
+- DECISIONS: D-009 name, D-010 blog scope, D-011 dark brand look added
+- ARCHITECTURE: rewritten from repo (blog, topics, content/posts) - re-read if touching structure
+- Repo now has code and git history; PRODUCT.md added at repo root
+- D2 still open and blocks /api/subscribe
 
 ## Current objective
-S00-1 Site foundations. Week 1 of 12. Budget about 6 hrs of Phil's time.
+S00-1 Site foundations, now scoped as a blog with tools (D-010). Week 1 of 12. Budget about 6 hrs of Phil's time.
 Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance checks in section 6).
 
 ## Sequence progress (handoff section 5)
-1. Priya: memory bootstrap and plan confirmation. DONE 2026-11-17
-2. Marcus: one-page architecture note (URL pattern, /tools layout, hosting, email shortlist with verified limits). IN FLIGHT
-2b. Margot (with Priya, Marcus): 5 candidate hub names (D1) with .com availability check. IN FLIGHT
-3. Phil: answer D1, D2; buy domain. WAITING on 2 and 2b
-4. Noor: minimal visual direction. NOT STARTED
-5. Yuki + Tomas build; Margot copy. NOT STARTED
-6. Viktor security, Eleanor review, Quinn QA. NOT STARTED
-7. Phil: items 9, 10, 12 (Search Console, GA4, social accounts) from team guide. Waits on domain and live URL
+1. Priya memory bootstrap. DONE
+2. Marcus architecture note. DONE (docs/specs/S00-1-architecture.md)
+2b. Margot name candidates. DONE; Phil chose "The AI Business Kit" (D-009)
+3. Phil: D2 email provider OPEN; buy domain NOT DONE
+4. Noor visual direction: superseded by Phil's dark brand look (D-011)
+5. Yuki build: DONE for scaffold, layout, blog (MDX, topics, share images, sitemap), restyle, 3 draft sample posts. Margot copy and privacy draft committed.
+5b. Tomas /api/subscribe: BLOCKED on D2
+6. Viktor, Eleanor, Quinn: NOT STARTED
+7. Phil: Search Console, GA4, social accounts. Waits on domain and live URL
 8. Priya: week-1 audience tracker row (item 11). NOT STARTED
 
 ## Decisions (see DECISIONS.md)
-- S00 D3 hosting: DECIDED. Next.js on Phil's Railway account (Vercel Hobby ruled out, non-commercial only). Marcus still to confirm plan covers traffic and cost, and Railway terms allow it.
-- S00 D1 hub name and .com: OPEN (Phil). Build proceeds on SITE_NAME / SITE_URL env vars.
-- S00 D2 email provider: OPEN (Phil, on Marcus's recommendation). Compare free subscriber cap, double opt-in, export, API, UK GDPR terms.
-- S00 D4 consent records in Supabase or provider only: OPEN (Marcus, Astrid recommend). Default: provider only.
+- D1 DECIDED (D-009). D3 hosting DECIDED (D-005). D-010 blog scope, D-011 design DECIDED.
+- D2 OPEN (Phil): Kit Free (recommended, free, D-006) vs Buttondown ($9/mo).
+- D4 consent records: proposed provider only (D-008); Astrid to confirm.
 
 ## Blockers / flags
-- keyword-shortlist-and-content-plan.xlsx (source of truth, Backlog row S00-1) is NOT in the project folder. Needed to set row to Published at the end and for the audience tracker. Ask Phil to add it.
-- Repo is not yet a git repo and has no code.
-- Domain not bought: blocks handoff items 9 and 10.
+- D2 blocks /api/subscribe.
+- Domain not bought (as far as known); blocks handoff items 9 and 10. Unchecked: X and YouTube handles, UK IPO trademark.
+- Three draft sample posts in content/posts/ are for layout testing. Phil must approve or replace before live.
+- Open TODOs: Margot copy has TODO(phil) and TODO(d2); lib/social.ts profile URLs null (TODO(phil)).
+- GA4 cookie consent question open for Viktor. Railway deploy not done. Lighthouse not run.
+- keyword-shortlist-and-content-plan.xlsx still not in project folder (needed to set row to Published and for tracker).
+- No DESIGN.md; suggest running /impeccable document.
 
 ## Verify before relying on (handoff section 8)
 GA4 menu steps on a live property; current ICO/PECR guidance; bot names on vendor docs; email provider free limits (cite page and date).
 
 ## Next steps
-1. Marcus delivers architecture note; Margot delivers name candidates.
-2. Phil picks name, buys domain, picks email provider.
-3. Phil adds the workbook to the project folder.
-4. Next: K03-T1 robots.txt tester (W2-3). Site must support server routes and rate-limited outbound fetches.
+1. Phil answers D2.
+2. Tomas builds /api/subscribe.
+3. Viktor (incl. GA4 consent), Eleanor, Quinn passes.
+4. Phil: approve or replace sample posts, set social URLs, buy domain, add workbook.
+5. Deploy to Railway; run Lighthouse.
+6. Next: K03-T1 robots.txt tester (W2-3).

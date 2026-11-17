@@ -40,3 +40,18 @@ Owner: Marcus. Affects: Tomas, Viktor.
 Why: Kit holds who/when/how; "what wording" closed by tagging each signup with consent text version kept in git.
 Rejected: Supabase consent table (second personal-data store, DPA, RLS, deletion duties for no gain).
 Owner: Marcus (Astrid to confirm). Affects: Tomas, Margot, Viktor.
+
+## D-009 | 2026-11-17 | S00 D1: hub name "The AI Business Kit"
+Why: Phil's choice. .com and TikTok handle available per Phil.
+Open checks: X and YouTube handles, UK IPO trademark. Domain not yet bought as far as known.
+Owner: Phil. Affects: Margot (copy), Yuki (SITE_NAME), Phil (domain, social accounts).
+
+## D-010 | 2026-11-17 | Scope change: site is a blog with tools, articles first
+Why: Phil's call. Blog was out of scope in the S00-1 handoff; adds about a day of build.
+Shape: MDX in content/posts/ (frontmatter title, description, topic, date, updated, draft). Drafts show in dev or SHOW_DRAFTS=true, always noindex, never in sitemap. Topics in lib/topics.ts: Get found / Get trusted / Run better. Routes /blog, /blog/<slug>, /topics/<slug>, /tools. Per-post share images via next/og.
+Owner: Phil. Affects: Yuki, Margot, Viktor, Eleanor, Quinn. Supersedes D-003 note "no /tools index page".
+
+## D-011 | 2026-11-17 | Visual: dark brand look, light theme follows phone setting, coral accent
+Why: Phil's choice (Runpod-like). Accent oklch(0.72 0.16 28), Manrope via next/font. Brand context in PRODUCT.md.
+Rejected: hi-vis yellow / Archivo "signpost" concept (Phil). Noor's visual direction spec superseded (marked in file; signup-placement and "don't" rules still apply).
+Owner: Phil. Affects: Yuki. No DESIGN.md yet; suggest /impeccable document.
