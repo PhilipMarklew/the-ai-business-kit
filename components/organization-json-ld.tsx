@@ -1,5 +1,6 @@
 import { copy } from "@/lib/copy";
 import { absoluteUrl, authorDisplayName, site } from "@/lib/site";
+import { liveSocial } from "@/lib/social";
 
 /**
  * Organization JSON-LD with the author as founder. Built from the same
@@ -15,7 +16,8 @@ export function OrganizationJsonLd() {
     url: absoluteUrl("/"),
     description: copy.siteDescription,
     founder: { "@type": "Person", name: authorDisplayName, url: absoluteUrl("/about") },
-    // TODO: add sameAs once the TikTok, YouTube and X accounts exist.
+    // Filled from lib/social.ts as each account goes live.
+    ...(liveSocial.length > 0 && { sameAs: liveSocial.map((s) => s.url) }),
   };
   return (
     <script
