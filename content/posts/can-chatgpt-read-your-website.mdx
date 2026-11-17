@@ -1,0 +1,46 @@
+---
+title: "Can ChatGPT read your website? Check one small file first"
+description: "Before you worry about showing up in AI search, check your robots.txt. It takes two minutes and it's the first thing that can quietly shut you out."
+topic: get-found
+date: 2026-11-17
+draft: true
+---
+
+A lot of small business owners are asking how to show up when someone asks ChatGPT or Perplexity for a recommendation. Fair question. But before any of the clever stuff, there's a boring check that matters more than people think.
+
+Can the AI tools actually read your website?
+
+## The file that decides
+
+Every website can have a small text file called `robots.txt`. It sits at the root of your site, so for most people it's at `yourdomain.com/robots.txt`. It tells automated visitors, the crawlers, which parts of the site they're allowed to read.
+
+Search engines respect it. The big AI companies say their crawlers respect it too. So if your robots.txt blocks a crawler, that crawler doesn't read your pages. And if it can't read them, it's hard for that tool to recommend you.
+
+## How to check yours
+
+Open a browser and type your domain followed by `/robots.txt`. You'll see one of three things.
+
+1. **A "page not found" error.** No file at all. Crawlers treat that as permission to read everything, so you're fine for now.
+2. **A short file that allows everything.** Something like `User-agent: *` followed by `Allow: /`. Also fine.
+3. **A file with `Disallow` lines.** This is the one to read carefully.
+
+A line that says `Disallow: /` under `User-agent: *` blocks every crawler from the whole site. I've seen this left behind after a website build, because developers often block crawlers while a site is unfinished and then forget to take it off.
+
+## The names to look for
+
+Each crawler has a name, and the file can treat them differently. These are the ones I'd check for first:
+
+- `Googlebot` reads your site for Google Search.
+- `Bingbot` does the same for Bing, which also feeds other tools.
+- `OAI-SearchBot` is the crawler OpenAI uses for search features in ChatGPT.
+- `PerplexityBot` reads pages for Perplexity's answers.
+
+If any of those names appear with `Disallow: /` underneath, that tool is being told to stay out.
+
+## What to do if you're blocked
+
+If you built the site yourself on a platform like Squarespace or Wix, look in the SEO or crawler settings rather than editing the file by hand. If someone built it for you, send them this page and ask them to allow the crawlers you want.
+
+And if the file looks confusing, that's normal. It's an old format with a few odd rules.
+
+So I'm building a free tool that reads your robots.txt and tells you, in plain English, which of these crawlers can get in. It's the first tool on this site. Sign up below and I'll send it to you when it's ready.
