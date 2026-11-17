@@ -44,7 +44,7 @@ function TitleLink({ post }: { post: Post }) {
 export function LeadStory({ post }: { post: Post }) {
   return (
     <article className="group relative flex flex-col gap-4">
-      <PostCover slug={post.slug} topic={post.topic} className="aspect-[16/9]" />
+      <PostCover post={post} className="aspect-video" preload />
       <div className="mt-2 flex flex-col gap-3">
         <TopicTag post={post} />
         <h3 className="text-headline font-extrabold">
@@ -78,7 +78,7 @@ export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headin
   const Heading = headingLevel;
   return (
     <article className="group relative grid items-center gap-6 md:grid-cols-[1.15fr_1fr] md:gap-10">
-      <PostCover slug={post.slug} topic={post.topic} />
+      <PostCover post={post} className="aspect-video" />
       <div className="flex flex-col gap-3">
         <TopicTag post={post} />
         <Heading className="text-headline font-extrabold">
@@ -95,7 +95,7 @@ export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headin
 export function PostRow({ post }: { post: Post }) {
   return (
     <article className="group relative grid grid-cols-[6.5rem_1fr] items-start gap-4 sm:grid-cols-[9rem_1fr] sm:gap-5">
-      <PostCover slug={post.slug} topic={post.topic} className="aspect-square" />
+      <PostCover post={post} className="aspect-square" sizes="144px" />
       <div className="flex min-w-0 flex-col gap-1.5">
         <TopicTag post={post} />
         <h3 className="text-title font-bold">

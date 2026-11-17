@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HomeHero } from "@/components/home-hero";
+import { Marker } from "@/components/marker";
 import { LeadStory, PostHeadline, PostList } from "@/components/post-card";
 import { SignupAside } from "@/components/signup-band";
 import { ToolsStrip } from "@/components/tools-strip";
@@ -10,11 +10,23 @@ import { topics } from "@/lib/topics";
 const SIDE_COUNT = 3;
 const MORE_COUNT = 6;
 
+/** Headline with the marker under `mark`. Falls back to plain text if `mark` is not in `title`. */
+function MarkedTitle({ title, mark }: { title: string; mark: string }) {
+  const at = title.indexOf(mark);
+  if (at === -1) return <>{title}</>;
+  return (
+    <>
+      {title.slice(0, at)}
+      <Marker>{mark}</Marker>
+      {title.slice(at + mark.length)}
+    </>
+  );
+}
+
 /**
- * Home page, laid out like the front page of a publication: the hero, then the
- * latest guides straight away (lead story left, headlines and signup right),
- * then any older guides, then the tools. The signup sits beside the content it
- * offers instead of in a separate banner above the footer.
+ * Home page, content first (Smashing Magazine / HubSpot blog): a short intro
+ * with the one marker flourish, then the latest guides on the first screen
+ * (lead story left, headlines and signup right), then older guides, then tools.
  */
 export default function HomePage() {
   const posts = getPosts();
@@ -24,11 +36,16 @@ export default function HomePage() {
 
   return (
     <>
-      <HomeHero featuredHref={lead ? `/blog/${lead.slug}` : "/blog"} />
-
       <div className="mx-auto w-full max-w-page px-5 sm:px-8">
-        <section aria-labelledby="latest-heading" className="pt-14 md:pt-20">
-          <div className="flex flex-col gap-3 border-b border-line pb-4 sm:flex-row sm:items-baseline sm:justify-between">
+        <header className="grid gap-4 border-b border-line pb-8 pt-10 md:pt-14 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
+          <h1 className="max-w-[20ch] text-headline font-extrabold md:text-[clamp(2.25rem,1.4rem+2.2vw,3.25rem)]">
+            <MarkedTitle title={copy.home.title} mark={copy.home.titleMark} />
+          </h1>
+          <p className="max-w-[48ch] text-lg text-muted lg:pb-1">{copy.home.intro}</p>
+        </header>
+
+        <section aria-labelledby="latest-heading" className="pt-8 md:pt-10">
+          <div className="flex flex-col gap-3 pb-2 sm:flex-row sm:items-baseline sm:justify-between">
             <h2 id="latest-heading" className="text-title font-extrabold">
               {copy.home.latestHeading}
             </h2>
@@ -48,7 +65,7 @@ export default function HomePage() {
             </nav>
           </div>
 
-          <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-14">
+          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-14">
             {lead ? (
               <LeadStory post={lead} />
             ) : (
@@ -82,7 +99,7 @@ export default function HomePage() {
           </section>
         )}
 
-        <div className="mt-28 md:mt-36">
+        <div className="mt-20 md:mt-28">
           <ToolsStrip />
         </div>
       </div>

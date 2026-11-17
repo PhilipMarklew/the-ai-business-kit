@@ -6,42 +6,43 @@
  * (dark brand look, coral accent, Manrope). This is the ONE place to change
  * colour, type and radius.
  *
- * Dark is the brand default. Phones set to light mode get the light set.
+ * Content-first variant: light is the default, like the HubSpot blog and
+ * Smashing Magazine. Phones set to dark mode get the dark set.
  * Contrast (WCAG 2.x, computed 17 Nov 2026):
  *   dark  ink/canvas 17.5  muted/canvas 8.7  link/canvas 8.4  on-accent/accent 7.3
  *   light ink/canvas 17.9  muted/canvas 7.1  link/canvas 5.9  on-accent/accent 7.3
  * Rules that follow from the numbers:
  *   - Text on a coral fill is always --on-accent (near-black). White on coral is 2.4.
  *   - Coral text uses --link, never --accent (light-mode --accent on white is 2.6).
- *   - --line is decorative only (1.3-1.5). Input borders use --muted.
+ *   - --line is decorative only (1.3-1.6). Input borders use --muted.
  */
 :root {
-  --canvas: oklch(0.16 0.006 28);
-  --surface: oklch(0.205 0.008 28);
-  --raised: oklch(0.25 0.01 28);
-  --ink: oklch(0.965 0.004 28);
-  --muted: oklch(0.75 0.01 28);
-  --line: oklch(0.31 0.01 28);
+  --canvas: oklch(0.995 0.002 28);
+  --surface: oklch(0.97 0.005 28);
+  --raised: oklch(0.94 0.007 28);
+  --ink: oklch(0.2 0.01 28);
+  --muted: oklch(0.46 0.012 28);
+  --line: oklch(0.86 0.008 28);
   --accent: oklch(0.72 0.16 28);
-  --accent-hover: oklch(0.78 0.14 30);
-  --link: oklch(0.76 0.15 29);
+  --accent-hover: oklch(0.66 0.17 28);
+  --link: oklch(0.52 0.17 28);
   --on-accent: oklch(0.16 0.006 28);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --canvas: oklch(0.995 0.002 28);
-    --surface: oklch(0.97 0.005 28);
-    --raised: oklch(0.94 0.007 28);
-    --ink: oklch(0.2 0.01 28);
-    --muted: oklch(0.46 0.012 28);
-    --line: oklch(0.9 0.008 28);
+    --canvas: oklch(0.16 0.006 28);
+    --surface: oklch(0.205 0.008 28);
+    --raised: oklch(0.25 0.01 28);
+    --ink: oklch(0.965 0.004 28);
+    --muted: oklch(0.75 0.01 28);
+    --line: oklch(0.31 0.01 28);
     --accent: oklch(0.72 0.16 28);
-    --accent-hover: oklch(0.66 0.17 28);
-    --link: oklch(0.52 0.17 28);
+    --accent-hover: oklch(0.78 0.14 30);
+    --link: oklch(0.76 0.15 29);
     --on-accent: oklch(0.16 0.006 28);
-    color-scheme: light;
+    color-scheme: dark;
   }
 }
 

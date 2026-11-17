@@ -3,12 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleJsonLd } from "@/components/article-json-ld";
 import { PostMeta, PostRow } from "@/components/post-card";
+import { PostCover } from "@/components/post-cover";
 import { SignupBand } from "@/components/signup-band";
 import { copy } from "@/lib/copy";
 import { renderMdx } from "@/lib/mdx";
 import { getPost, getRelatedPosts, postStaticParams } from "@/lib/posts";
 import { authorDisplayName } from "@/lib/site";
 import { getTopic } from "@/lib/topics";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
   return postStaticParams();
@@ -64,10 +66,14 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
           </div>
         </header>
 
+        {post.cover && (
+          <PostCover post={post} preload sizes="(min-width: 1024px) 672px, 100vw" className="mt-8 aspect-video lg:col-start-2" />
+        )}
+
         <div className="prose mt-10 min-w-0 lg:col-start-2">{content}</div>
 
         {post.headings.length > 1 && (
-          <aside aria-labelledby="toc-heading" className="mt-10 max-lg:hidden lg:col-start-3 lg:row-start-2">
+          <aside aria-labelledby="toc-heading" className={cn("mt-10 max-lg:hidden lg:col-start-3", post.cover ? "lg:row-start-3" : "lg:row-start-2")}>
               <nav className="sticky top-8 flex flex-col gap-3 text-sm">
                 <h2 id="toc-heading" className="font-bold text-ink">
                   {copy.article.contents}

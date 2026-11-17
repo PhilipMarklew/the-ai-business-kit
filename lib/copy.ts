@@ -116,6 +116,8 @@ export const copy = {
 
   home: {
     title: "ChatGPT gets useful once it knows your business",
+    /** The words in `title` that get the hand-drawn marker. Must appear in `title` exactly. */
+    titleMark: "your business",
     heroPrimary: "Read the latest guide",
     heroSecondary: "Get new guides by email",
     intro:

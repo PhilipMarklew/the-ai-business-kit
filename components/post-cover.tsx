@@ -1,3 +1,5 @@
+import Image from "next/image";
+import type { Post } from "@/lib/posts";
 import type { TopicSlug } from "@/lib/topics";
 import { cn } from "@/lib/utils";
 
@@ -139,7 +141,32 @@ const motifs: Record<TopicSlug, (props: { seed: number }) => React.ReactNode> = 
   "run-better": BetterMotif,
 };
 
+/**
+ * A post's cover: its real image when the frontmatter sets one (an annotated
+ * screenshot or video still), otherwise the generated motif below.
+ */
 export function PostCover({
+  post,
+  className,
+  sizes = "(min-width: 1024px) 720px, 100vw",
+  preload = false,
+}: {
+  post: Pick<Post, "slug" | "topic" | "cover">;
+  className?: string;
+  sizes?: string;
+  preload?: boolean;
+}) {
+  if (post.cover) {
+    return (
+      <div className={cn("relative overflow-hidden rounded-panel border border-line bg-surface", className ?? "aspect-video")}>
+        <Image src={post.cover.src} alt={post.cover.alt} fill sizes={sizes} preload={preload} className="object-cover object-left-top" />
+      </div>
+    );
+  }
+  return <MotifCover slug={post.slug} topic={post.topic} className={className} />;
+}
+
+function MotifCover({
   slug,
   topic,
   className,

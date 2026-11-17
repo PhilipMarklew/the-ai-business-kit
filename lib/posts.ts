@@ -15,7 +15,11 @@ import { isTopicSlug, type TopicSlug } from "@/lib/topics";
  *   date: 2026-11-17        # publish date, YYYY-MM-DD
  *   updated: 2026-11-20     # optional
  *   draft: true             # optional; drafts are hidden in production
+ *   cover: /images/posts/x.png   # optional; 16:9 screenshot or video still
+ *   coverAlt: "..."              # required when cover is set
  *   ---
+ *
+ * Without a cover, the post gets a generated motif (components/post-cover.tsx).
  *
  * Drafts show in `next dev`, or anywhere SHOW_DRAFTS=true. They never appear in
  * the sitemap and are always noindex. Reads happen at build time only.
@@ -34,6 +38,8 @@ export type Post = {
   date: string;
   updated: string | null;
   draft: boolean;
+  /** Optional 16:9 cover image under public/, with its alt text. */
+  cover: { src: string; alt: string } | null;
   readingMinutes: number;
   /** The h2 headings, in order, with the ids rehype-slug gives them. */
   headings: Heading[];
@@ -57,6 +63,16 @@ function readDate(file: string, value: unknown, field: string): string {
     fail(file, `"${field}" must be a date like 2026-11-17.`);
   }
   return iso;
+}
+
+function readCover(file: string, data: Record<string, unknown>): Post["cover"] {
+  if (data.cover == null) return null;
+  const src = data.cover;
+  if (typeof src !== "string" || !src.startsWith("/images/")) {
+    fail(file, `"cover" must be a path under public/images/, like /images/posts/my-post.png.`);
+  }
+  if (!fs.existsSync(path.join(process.cwd(), "public", src))) fail(file, `cover file public${src} does not exist.`);
+  return { src, alt: readString(file, data, "coverAlt") };
 }
 
 function readString(file: string, data: Record<string, unknown>, field: string): string {
@@ -106,6 +122,7 @@ function loadPost(file: string): Post {
     date: readDate(file, data.date, "date"),
     updated: data.updated == null ? null : readDate(file, data.updated, "updated"),
     draft: data.draft === true,
+    cover: readCover(file, data),
     readingMinutes: readingMinutes(content),
     headings: extractHeadings(content),
     body: content,
@@ -116,7 +133,9 @@ let cache: Post[] | null = null;
 
 /** Every post on disk, newest first, drafts included. */
 function loadAll(): Post[] {
-  if (cache) return cache;
+  // Cache only in production builds. In `next dev` the module outlives edits,
+  // so a cache would hide every change to a post until the server restarts.
+  if (cache && process.env.NODE_ENV === "production") return cache;
   const files = fs.existsSync(POSTS_DIR)
     ? fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"))
     : [];
