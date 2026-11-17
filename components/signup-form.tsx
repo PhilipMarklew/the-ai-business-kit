@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { copy } from "@/lib/copy";
@@ -110,9 +111,10 @@ export function SignupForm() {
             aria-describedby={consentError ? consentErrId : undefined}
             className="mt-1 size-5 shrink-0 accent-accent"
           />
-          <label htmlFor={consentId} className="text-sm text-muted">
-            {copy.signup.consent}
-          </label>
+          <p className="text-sm text-muted">
+            <label htmlFor={consentId}>{copy.signup.consent}</label>{" "}
+            <Link href="/privacy">{copy.signup.privacyLinkText}</Link>
+          </p>
         </div>
         {consentError && (
           <p id={consentErrId} className="text-sm">
