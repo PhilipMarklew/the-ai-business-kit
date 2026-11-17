@@ -13,7 +13,7 @@ export function TopicNav({ current }: { current: TopicSlug | "all" }) {
     ...topics.map((t) => ({ href: `/topics/${t.slug}`, label: t.name, key: t.slug })),
   ];
   return (
-    <nav aria-label="Topics" className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+    <nav aria-label="Topics" className="-mx-5 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
       <ul className="flex w-max gap-2">
         {items.map((item) => {
           const active = item.key === current;

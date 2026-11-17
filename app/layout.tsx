@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -9,10 +9,10 @@ import "./globals.css";
 
 // Self-hosted at build time by next/font, with a size-matched fallback so the
 // swap causes no layout shift. Variable font: one file covers every weight.
-const manrope = Manrope({
+const brandFont = Schibsted_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-brand",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${manrope.variable} h-full antialiased`}>
+    <html lang="en-GB" className={`${brandFont.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"

@@ -45,6 +45,48 @@
   }
 }
 
+/*
+ * Pin the dark token set on one element (the home hero), whatever the phone's
+ * setting. Same values as the dark :root block above.
+ */
+.scheme-dark {
+  --canvas: oklch(0.16 0.006 28);
+  --surface: oklch(0.205 0.008 28);
+  --raised: oklch(0.25 0.01 28);
+  --ink: oklch(0.965 0.004 28);
+  --muted: oklch(0.75 0.01 28);
+  --line: oklch(0.31 0.01 28);
+  --accent: oklch(0.72 0.16 28);
+  --accent-hover: oklch(0.78 0.14 30);
+  --link: oklch(0.76 0.15 29);
+  --on-accent: oklch(0.16 0.006 28);
+  color-scheme: dark;
+}
+
+/*
+ * Hero light. Three layers on near-black: a wide coral wash rising from the
+ * lower right, a deep wine pool on the left, and a faint warm haze at the top.
+ * Grain on top stops the gradients banding on cheap screens. Text sits on the
+ * darker upper-left side, so ink stays above 12:1 everywhere it lands.
+ */
+.hero-glow {
+  background-color: oklch(0.15 0.008 28);
+  background-image:
+    radial-gradient(70% 85% at 88% 105%, oklch(0.72 0.16 28 / 0.85) 0%, oklch(0.55 0.15 26 / 0.45) 35%, transparent 70%),
+    radial-gradient(60% 70% at 18% 115%, oklch(0.36 0.12 18 / 0.9) 0%, transparent 70%),
+    radial-gradient(90% 60% at 50% -20%, oklch(0.3 0.05 30 / 0.7) 0%, transparent 70%);
+}
+.hero-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
@@ -68,11 +110,14 @@
   --color-destructive: var(--ink);
 
   /* Set by next/font in app/layout.tsx. */
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme {
   /* Modular scale, ratio ~1.33 between heading steps. */
+  --text-hero: clamp(2.75rem, 1.4rem + 5.6vw, 5.75rem);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.035em;
   --text-display: clamp(2.25rem, 1.5rem + 3.6vw, 4rem);
   --text-display--line-height: 1.04;
   --text-display--letter-spacing: -0.035em;
@@ -140,6 +185,7 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

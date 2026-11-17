@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HomeHero } from "@/components/home-hero";
 import { FeaturedPost, PostList } from "@/components/post-card";
 import { SignupBand } from "@/components/signup-band";
 import { ToolsStrip } from "@/components/tools-strip";
@@ -14,19 +15,9 @@ export default function HomePage() {
   const latest = rest.slice(0, LIST_SIZE);
 
   return (
-    <div className="mx-auto w-full max-w-page px-5 sm:px-8">
-      <section
-        aria-labelledby="home-title"
-        className="grid gap-5 pb-10 pt-12 md:pb-12 md:pt-16 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:gap-16"
-      >
-        <h1 id="home-title" className="max-w-[16ch] animate-rise text-display font-extrabold">
-          {copy.home.title}
-        </h1>
-        <p className="max-w-[46ch] animate-rise text-lg text-muted [animation-delay:90ms] md:text-xl lg:pb-2">
-          {copy.home.intro}
-        </p>
-      </section>
-
+    <>
+      <HomeHero featuredHref={featured ? `/blog/${featured.slug}` : "/blog"} />
+      <div className="mx-auto w-full max-w-page px-5 pt-12 sm:px-8 md:pt-16">
       <TopicNav current="all" />
 
       {featured ? (
@@ -63,6 +54,7 @@ export default function HomePage() {
       <div className="mt-16 md:mt-24">
         <ToolsStrip />
       </div>
-    </div>
+      </div>
+    </>
   );
 }

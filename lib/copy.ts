@@ -116,6 +116,8 @@ export const copy = {
 
   home: {
     title: "Plain-English AI for small businesses",
+    heroPrimary: "Read the latest guide",
+    heroSecondary: "Get new guides by email",
     intro:
       "Guides and free tools that help you get found, earn trust and take the busywork off your plate. No jargon, and nothing to buy.",
     latestHeading: "Latest posts",
