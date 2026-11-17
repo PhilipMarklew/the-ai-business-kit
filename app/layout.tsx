@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Literata, Schibsted_Grotesk } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -13,6 +13,15 @@ const brandFont = Schibsted_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-brand",
+});
+
+// Headings only. Weight and tracking live in app/globals.css (--heading-*).
+// Also trialled 17 Nov 2026: Hedvig_Letters_Serif and Young_Serif (both single
+// weight: pass weight: "400" here and set --heading-weight: 400 in globals.css).
+const headingFont = Literata({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading-face",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${brandFont.variable} h-full antialiased`}>
+    <html lang="en-GB" className={`${brandFont.variable} ${headingFont.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"

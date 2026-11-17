@@ -19,7 +19,7 @@ export default function NotFound() {
   return (
     <PageContainer>
       <p className="text-sm font-bold text-link">404</p>
-      <h1 className="mt-3 text-display font-extrabold">{copy.notFound.heading}</h1>
+      <h1 className="mt-3 text-display font-heading">{copy.notFound.heading}</h1>
       <p className="mt-5 text-lg text-muted">{copy.notFound.body}</p>
       <ul className="mt-8 flex flex-wrap gap-3">
         {links.map((l, i) => (

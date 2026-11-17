@@ -13,7 +13,7 @@ export default function NewsletterPage() {
   return (
     <div className="mx-auto grid w-full max-w-page gap-10 px-5 pb-8 pt-12 sm:px-8 md:grid-cols-[1fr_1fr] md:gap-16 md:pt-20">
       <div className="flex flex-col gap-6">
-        <h1 className="animate-rise text-display font-extrabold">{copy.newsletter.heading}</h1>
+        <h1 className="animate-rise text-display font-heading">{copy.newsletter.heading}</h1>
         <ul className="flex flex-col gap-4">
           {copy.newsletter.points.map((p) => {
             const [label, ...rest] = p.split(": ");

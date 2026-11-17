@@ -110,7 +110,7 @@
   --color-ring: var(--link);
   --color-destructive: var(--ink);
 
-  /* Set by next/font in app/layout.tsx. */
+  /* Set by next/font in app/layout.tsx. Body and interface: sans. Headings: see --heading-family. */
   --font-sans: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -118,16 +118,16 @@
   /* Modular scale, ratio ~1.33 between heading steps. */
   --text-hero: clamp(2.75rem, 1.4rem + 5.6vw, 5.75rem);
   --text-hero--line-height: 0.98;
-  --text-hero--letter-spacing: -0.035em;
+  --text-hero--letter-spacing: var(--heading-tracking-tight);
   --text-display: clamp(2.25rem, 1.5rem + 3.6vw, 4rem);
   --text-display--line-height: 1.04;
-  --text-display--letter-spacing: -0.035em;
+  --text-display--letter-spacing: var(--heading-tracking-tight);
   --text-headline: clamp(1.75rem, 1.35rem + 1.9vw, 2.75rem);
   --text-headline--line-height: 1.1;
-  --text-headline--letter-spacing: -0.03em;
+  --text-headline--letter-spacing: var(--heading-tracking-tight);
   --text-title: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
   --text-title--line-height: 1.25;
-  --text-title--letter-spacing: -0.015em;
+  --text-title--letter-spacing: var(--heading-tracking);
 
   --container-measure: 42rem; /* max-w-measure: reading column, ~68ch */
   --container-page: 76rem; /* max-w-page: header, footer, wide sections */
@@ -146,6 +146,24 @@
       transform: translateY(0.75rem);
     }
   }
+}
+
+/*
+ * Headings use the serif. One utility sets family, weight and tracking
+ * together, so swapping the heading font is a change in app/layout.tsx plus
+ * these three values. Serifs need far less negative tracking than a heavy sans.
+ */
+:root {
+  /* Not --font-serif: Tailwind's default theme owns that name. */
+  --heading-family: var(--font-heading-face), ui-serif, Georgia, serif;
+  --heading-weight: 600;
+  --heading-tracking: -0.005em;
+  --heading-tracking-tight: -0.015em;
+}
+
+@utility font-heading {
+  font-family: var(--heading-family);
+  font-weight: var(--heading-weight);
 }
 
 @layer base {
@@ -211,14 +229,16 @@
     margin-top: 2.25em;
     font-size: var(--text-title);
     line-height: 1.25;
-    letter-spacing: -0.015em;
-    font-weight: 750;
+    letter-spacing: var(--heading-tracking);
+    font-family: var(--heading-family);
+    font-weight: var(--heading-weight);
     scroll-margin-top: 1.5rem;
   }
   .prose h3 {
     margin-top: 1.75em;
     font-size: 1.125rem;
-    font-weight: 700;
+    font-family: var(--heading-family);
+    font-weight: var(--heading-weight);
     scroll-margin-top: 1.5rem;
   }
   .prose h2 + *,

@@ -15,7 +15,7 @@ export default function ToolsIndexPage() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-4">
-        <h1 className="text-display font-extrabold">{copy.tools.heading}</h1>
+        <h1 className="text-display font-heading">{copy.tools.heading}</h1>
         <p className="max-w-[52ch] text-lg text-muted">{copy.tools.intro}</p>
       </header>
       <ToolsStrip headingLevel="h2" heading={copy.tools.listHeading} />

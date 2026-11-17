@@ -47,7 +47,7 @@ export function LeadStory({ post }: { post: Post }) {
       <PostCover post={post} className="aspect-video" preload />
       <div className="mt-2 flex flex-col gap-3">
         <TopicTag post={post} />
-        <h3 className="text-headline font-extrabold">
+        <h3 className="text-headline font-heading">
           <TitleLink post={post} />
         </h3>
         <p className="max-w-[56ch] text-lg text-muted">{post.description}</p>
@@ -62,7 +62,7 @@ export function PostHeadline({ post }: { post: Post }) {
   return (
     <article className="group relative flex flex-col gap-1.5 py-5">
       <TopicTag post={post} />
-      <h3 className="text-lg font-bold leading-snug">
+      <h3 className="text-lg font-heading leading-snug">
         <TitleLink post={post} />
       </h3>
       <PostMeta post={post} />
@@ -81,7 +81,7 @@ export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headin
       <PostCover post={post} className="aspect-video" />
       <div className="flex flex-col gap-3">
         <TopicTag post={post} />
-        <Heading className="text-headline font-extrabold">
+        <Heading className="text-headline font-heading">
           <TitleLink post={post} />
         </Heading>
         <p className="text-lg text-muted">{post.description}</p>
@@ -98,7 +98,7 @@ export function PostRow({ post }: { post: Post }) {
       <PostCover post={post} className="aspect-square" sizes="144px" />
       <div className="flex min-w-0 flex-col gap-1.5">
         <TopicTag post={post} />
-        <h3 className="text-title font-bold">
+        <h3 className="text-title font-heading">
           <TitleLink post={post} />
         </h3>
         <p className="line-clamp-2 text-muted max-sm:hidden">{post.description}</p>

@@ -54,7 +54,7 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
           <Link href={`/topics/${post.topic}`} className="self-start text-sm font-bold">
             {topic?.name}
           </Link>
-          <h1 className="animate-rise text-headline font-extrabold md:text-[clamp(2.25rem,1.5rem+2.4vw,3.25rem)]">
+          <h1 className="animate-rise text-headline font-heading md:text-[clamp(2.25rem,1.5rem+2.4vw,3.25rem)]">
             {post.title}
           </h1>
           <p className="text-lg text-muted md:text-xl">{post.description}</p>

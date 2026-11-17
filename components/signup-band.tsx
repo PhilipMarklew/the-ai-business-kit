@@ -21,7 +21,7 @@ export function SignupBand({
     <section id={id} aria-labelledby={headingId} className="scroll-mt-6 border-t-4 border-accent pt-8">
       <div className="grid gap-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
         <div className="flex flex-col gap-3">
-          <h2 id={headingId} className="text-headline font-extrabold">
+          <h2 id={headingId} className="text-headline font-heading">
             {heading}
           </h2>
           <p className="max-w-[44ch] text-lg text-muted">{body}</p>
@@ -45,7 +45,7 @@ export function SignupAside({ id = "signup" }: { id?: string }) {
       aria-labelledby={headingId}
       className="scroll-mt-6 rounded-panel bg-accent p-6 text-on-accent sm:p-7"
     >
-      <h2 id={headingId} className="text-title font-extrabold">
+      <h2 id={headingId} className="text-title font-heading">
         {copy.band.heading}
       </h2>
       <p className="mt-2 mb-5">{copy.band.body}</p>

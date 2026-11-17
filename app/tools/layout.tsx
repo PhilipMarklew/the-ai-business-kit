@@ -10,7 +10,7 @@ export default function ToolsLayout({ children }: { children: ReactNode }) {
       <ToolShellHeading />
       <div>{children}</div>
       <section aria-labelledby="tool-signup" className="mt-16 max-w-measure rounded-panel border border-line bg-surface p-6 sm:p-8">
-        <h2 id="tool-signup" className="mb-5 text-title font-bold">
+        <h2 id="tool-signup" className="mb-5 text-title font-heading">
           {copy.toolShell.signupHeading}
         </h2>
         <SignupForm />

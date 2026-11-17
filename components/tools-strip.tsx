@@ -22,7 +22,7 @@ export function ToolsStrip({
       className="grid gap-6 border-t border-line pt-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-12 md:pt-14"
     >
       <div className="flex flex-col gap-2">
-        <Heading id="tools-strip" className="text-headline font-extrabold">
+        <Heading id="tools-strip" className="text-headline font-heading">
           {heading}
         </Heading>
         {live.length > 0 && (

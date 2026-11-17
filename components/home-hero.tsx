@@ -32,7 +32,7 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
           <h1
             id="home-title"
             className={cn(
-              "max-w-[16ch] animate-rise text-hero font-extrabold",
+              "max-w-[16ch] animate-rise text-hero font-heading",
               hasMedia && "lg:max-w-[18ch] lg:text-[clamp(2.75rem,1rem+3vw,4rem)]",
             )}
           >

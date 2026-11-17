@@ -38,7 +38,7 @@ export default function HomePage() {
     <>
       <div className="mx-auto w-full max-w-page px-5 sm:px-8">
         <header className="grid gap-4 border-b border-line pb-8 pt-10 md:pt-14 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
-          <h1 className="max-w-[20ch] text-headline font-extrabold md:text-[clamp(2.25rem,1.4rem+2.2vw,3.25rem)]">
+          <h1 className="max-w-[20ch] text-headline font-heading md:text-[clamp(2.25rem,1.4rem+2.2vw,3.25rem)]">
             <MarkedTitle title={copy.home.title} mark={copy.home.titleMark} />
           </h1>
           <p className="max-w-[48ch] text-lg text-muted lg:pb-1">{copy.home.intro}</p>
@@ -46,7 +46,7 @@ export default function HomePage() {
 
         <section aria-labelledby="latest-heading" className="pt-8 md:pt-10">
           <div className="flex flex-col gap-3 pb-2 sm:flex-row sm:items-baseline sm:justify-between">
-            <h2 id="latest-heading" className="text-title font-extrabold">
+            <h2 id="latest-heading" className="text-title font-heading">
               {copy.home.latestHeading}
             </h2>
             <nav aria-label="Topics">
@@ -70,7 +70,7 @@ export default function HomePage() {
               <LeadStory post={lead} />
             ) : (
               <div className="flex flex-col gap-2">
-                <h3 className="text-headline font-extrabold">{copy.home.emptyHeading}</h3>
+                <h3 className="text-headline font-heading">{copy.home.emptyHeading}</h3>
                 <p className="max-w-[52ch] text-lg text-muted">{copy.home.emptyBody}</p>
               </div>
             )}
@@ -92,7 +92,7 @@ export default function HomePage() {
 
         {more.length > 0 && (
           <section aria-labelledby="more-heading" className="mt-20 md:mt-24">
-            <h2 id="more-heading" className="mb-8 border-b border-line pb-4 text-title font-extrabold">
+            <h2 id="more-heading" className="mb-8 border-b border-line pb-4 text-title font-heading">
               {copy.home.moreHeading}
             </h2>
             <PostList posts={more} />
