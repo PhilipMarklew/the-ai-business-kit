@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { copy } from "@/lib/copy";
-import { HERO_IMAGE_RATIO, heroImage, showHeroPlaceholder } from "@/lib/hero";
+import { heroImage, showHeroPlaceholder } from "@/lib/hero";
 import { cn } from "@/lib/utils";
 
 /**
@@ -10,8 +10,9 @@ import { cn } from "@/lib/utils";
  * gradient in `.hero-glow`. Two actions: read the newest guide, or sign up.
  *
  * Optional image on the right (lib/hero.ts). With an image or the preview
- * placeholder, the hero splits into two columns from 1024px and the headline
- * steps down a size so both sides balance. Without either, it is text only.
+ * placeholder, the text takes the left half from 1024px, the headline steps
+ * down a size, and the image bleeds off the right edge. Without either, the
+ * hero is text only.
  */
 export function HomeHero({ featuredHref }: { featuredHref: string }) {
   const hasMedia = heroImage !== null || showHeroPlaceholder;
@@ -19,15 +20,15 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
   return (
     <section
       aria-labelledby="home-title"
-      className="scheme-dark hero-glow relative isolate mx-2 mt-2 overflow-hidden rounded-[1.75rem] text-ink sm:mx-4 sm:mt-4 sm:rounded-[2.25rem]"
+      className="scheme-dark hero-glow relative isolate mx-2 mt-2 overflow-hidden rounded-[1.75rem] text-ink sm:rounded-[2.25rem]"
     >
       <div
         className={cn(
-          "mx-auto grid w-full max-w-page gap-12 px-5 pb-16 pt-20 sm:px-8 md:pb-24 md:pt-32 lg:min-h-[36rem] lg:pb-28",
-          hasMedia ? "lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14 lg:pt-24" : "lg:items-end",
+          "mx-auto flex w-full max-w-page flex-col gap-12 px-5 pt-20 sm:px-8 md:pt-32 lg:min-h-[38rem]",
+          hasMedia ? "pb-0 lg:justify-center lg:pb-24 lg:pt-24" : "pb-16 md:pb-24 lg:justify-end lg:pb-28",
         )}
       >
-        <div className="flex flex-col gap-8">
+        <div className={cn("flex flex-col gap-8", hasMedia && "lg:w-1/2 lg:pr-6")}>
           <h1
             id="home-title"
             className={cn(
@@ -63,41 +64,51 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
 }
 
 /**
- * The image sits in a framed panel with a soft shadow, so a flat screenshot
- * reads as an object placed on the gradient, not pasted onto it.
+ * The image bleeds off the right edge of the hero, Runpod style.
+ *
+ * Desktop: the frame is pinned from the hero's centre line (where the text
+ * column ends) and is wider than the space left, so the hero's overflow and
+ * rounded corner crop its right side. Phone: it sits under the buttons and
+ * runs past the right padding and the bottom edge.
+ *
+ * The image is cropped from the top-left (object-left-top), so whatever
+ * matters in it must sit top-left. A flat screenshot reads as an object placed
+ * on the gradient thanks to the border and soft shadow on its left side.
  */
 function HeroMedia() {
+  const position =
+    "-mr-5 sm:-mr-8 lg:absolute lg:inset-y-0 lg:left-[calc(50%+1.5rem)] lg:right-0 lg:mr-0 lg:flex lg:items-center";
   const frame =
-    "animate-rise overflow-hidden rounded-[1.25rem] border border-ink/15 bg-canvas/40 shadow-[0_30px_80px_-20px_oklch(0.1_0.02_28/0.8)] [animation-delay:240ms]";
+    "relative aspect-[4/3] w-[calc(100%+1.25rem)] animate-rise overflow-hidden rounded-l-[1.25rem] border-y border-l border-ink/15 bg-canvas/40 shadow-[-30px_30px_80px_-20px_oklch(0.1_0.02_28/0.8)] [animation-delay:240ms] max-lg:rounded-bl-none max-lg:border-b-0 lg:aspect-auto lg:h-[min(32rem,80%)] lg:w-[54rem] lg:shrink-0";
 
   if (heroImage) {
     return (
-      <div className={frame}>
-        <Image
-          src={heroImage.src}
-          alt={heroImage.alt}
-          width={heroImage.width}
-          height={heroImage.height}
-          preload
-          sizes="(min-width: 1024px) 560px, 100vw"
-          className="block h-auto w-full"
-        />
+      <div className={position}>
+        <div className={frame}>
+          <Image
+            src={heroImage.src}
+            alt={heroImage.alt}
+            fill
+            preload
+            sizes="(min-width: 1024px) 864px, 100vw"
+            className="object-cover object-left-top"
+          />
+        </div>
       </div>
     );
   }
 
   // Preview builds only. Never reaches production (see lib/hero.ts).
   return (
-    <div
-      className={cn(frame, "flex items-center justify-center border-dashed border-ink/40 p-6 text-center")}
-      style={{ aspectRatio: HERO_IMAGE_RATIO }}
-    >
-      <p className="text-sm text-ink/80">
-        <span className="block font-bold text-ink">Hero image slot</span>
-        4:3, at least 1600×1200
-        <br />
-        Set it in <code className="font-mono">lib/hero.ts</code>
-      </p>
+    <div className={position}>
+      <div className={cn(frame, "flex items-center border-dashed border-ink/40 p-8")}>
+        <p className="max-w-[24ch] text-sm text-ink/80">
+          <span className="block font-bold text-ink">Hero image slot</span>
+          4:3, at least 1600×1200. The right side runs off the edge, so keep what matters top-left.
+          <br />
+          Set it in <code className="font-mono">lib/hero.ts</code>
+        </p>
+      </div>
     </div>
   );
 }
