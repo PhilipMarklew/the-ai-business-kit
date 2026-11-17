@@ -51,7 +51,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-GB" className={`${brandFont.variable} ${headingFont.variable} h-full antialiased`}>
-      <body className="backdrop-both flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-10 focus:rounded-control focus:bg-accent focus:px-3 focus:py-2 focus:font-semibold focus:text-on-accent"
