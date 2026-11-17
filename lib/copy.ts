@@ -112,16 +112,17 @@ If how I use your data changes, I will update this page and the date at the top.
 export const copy = {
   // Used for meta description, Open Graph and JSON-LD.
   siteDescription:
-    "Free AI tools and plain-English guides that help small businesses get found online, earn trust and run better.",
+    "Plain-English guides and free tools that show small business owners how to get useful results from AI. Written and built by Phil.",
 
   home: {
-    title: "Plain-English AI for small businesses",
+    title: "ChatGPT gets useful once it knows your business",
     heroPrimary: "Read the latest guide",
     heroSecondary: "Get new guides by email",
     intro:
-      "Guides and free tools that help you get found, earn trust and take the busywork off your plate. No jargon, and nothing to buy.",
-    latestHeading: "Latest posts",
-    allPostsLink: "See every post",
+      "Many owners try ChatGPT once and give up after a bland answer. I write guides and build free tools that show you what to ask for and what to do with the answer.",
+    latestHeading: "Latest guides",
+    moreHeading: "Earlier guides",
+    allPostsLink: "All posts",
     emptyHeading: "The first posts are on their way",
     emptyBody:
       "I'm writing the first guides now. Sign up below and you'll get each one as soon as it's out.",
@@ -161,6 +162,7 @@ export const copy = {
     heading: "Free tools",
     intro: "Each tool does one job, runs in your browser and costs nothing. No sign-up needed to use them.",
     comingHeading: "Coming next",
+    listHeading: "The tools so far",
   },
 
   about: {
@@ -203,7 +205,7 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
   },
 
   footer: {
-    tagline: "Plain-English AI guides and free tools for small businesses. No jargon, no upsell.",
+    tagline: "I write plain-English guides and build free tools to help small business owners get more from AI.",
     // Reads "Built by Phil". TODO(phil): add a surname in lib/site.ts if you want it shown.
     builtBy: "Built by",
   },

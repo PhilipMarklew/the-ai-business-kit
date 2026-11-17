@@ -3,50 +3,50 @@ import { copy } from "@/lib/copy";
 import { tools } from "@/lib/tools";
 
 /**
- * Free tools on the home page. Lists published tools; until the first one
- * ships it says what is coming instead of showing an empty grid.
+ * Free tools. An open section between two rules, heading on the left and the
+ * tool list on the right from tablet up. Until the first tool ships it says
+ * what is coming instead of showing an empty list.
  */
-export function ToolsStrip({ headingLevel = "h2" }: { headingLevel?: "h2" | "h3" }) {
+export function ToolsStrip({
+  headingLevel = "h2",
+  heading = copy.home.toolsHeading,
+}: {
+  headingLevel?: "h2" | "h3";
+  heading?: string;
+}) {
   const Heading = headingLevel;
   const live = tools.filter((t) => t.published);
   return (
-    <section aria-labelledby="tools-strip" className="rounded-panel border border-line bg-surface p-6 sm:p-10">
-      <div className="flex items-baseline justify-between gap-4">
-        <Heading id="tools-strip" className="text-headline font-bold">
-          {copy.home.toolsHeading}
+    <section
+      aria-labelledby="tools-strip"
+      className="grid gap-6 border-t border-line pt-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-12 md:pt-14"
+    >
+      <div className="flex flex-col gap-2">
+        <Heading id="tools-strip" className="text-headline font-extrabold">
+          {heading}
         </Heading>
         {live.length > 0 && (
-          <Link href="/tools" className="shrink-0 font-semibold">
-            {copy.home.toolsLink} <span aria-hidden="true">→</span>
+          <Link href="/tools" className="self-start font-semibold">
+            {copy.home.toolsLink}
           </Link>
         )}
       </div>
 
       {live.length > 0 ? (
-        <ul className="mt-6 divide-y divide-line">
+        <ul className="divide-y divide-line">
           {live.map((t) => (
             <li key={t.slug}>
-              <Link
-                href={`/tools/${t.slug}`}
-                className="group flex items-center justify-between gap-6 py-4 text-ink hover:text-ink"
-              >
-                <span>
-                  <span className="block font-bold group-hover:underline">{t.title}</span>
-                  <span className="block text-muted">{t.description}</span>
-                </span>
-                <span aria-hidden="true" className="text-xl text-link transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+              <Link href={`/tools/${t.slug}`} className="group block py-4 text-ink first:pt-0 hover:text-ink">
+                <span className="block text-lg font-bold group-hover:underline">{t.title}</span>
+                <span className="block text-muted">{t.description}</span>
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
-          <span className="inline-flex h-7 shrink-0 items-center self-start rounded-full bg-raised px-3 text-xs font-bold text-ink">
-            In progress
-          </span>
-          <p className="max-w-[56ch] text-muted">{copy.home.toolsComing}</p>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm font-semibold text-link">{copy.tools.comingHeading}</p>
+          <p className="max-w-[56ch] text-lg">{copy.home.toolsComing}</p>
         </div>
       )}
     </section>

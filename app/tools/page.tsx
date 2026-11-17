@@ -18,7 +18,7 @@ export default function ToolsIndexPage() {
         <h1 className="text-display font-extrabold">{copy.tools.heading}</h1>
         <p className="max-w-[52ch] text-lg text-muted">{copy.tools.intro}</p>
       </header>
-      <ToolsStrip headingLevel="h2" />
+      <ToolsStrip headingLevel="h2" heading={copy.tools.listHeading} />
     </div>
   );
 }

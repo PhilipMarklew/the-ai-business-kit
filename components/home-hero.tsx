@@ -20,7 +20,7 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
   return (
     <section
       aria-labelledby="home-title"
-      className="scheme-dark hero-glow relative isolate mx-2 mt-2 overflow-hidden rounded-[1.75rem] text-ink sm:rounded-[2.25rem]"
+      className="scheme-dark hero-glow relative isolate mx-2 mt-2 overflow-hidden rounded-[1.25rem] text-ink sm:rounded-[1.5rem]"
     >
       <div
         className={cn(
@@ -32,8 +32,8 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
           <h1
             id="home-title"
             className={cn(
-              "max-w-[14ch] animate-rise text-hero font-extrabold",
-              hasMedia && "lg:text-[clamp(3rem,1rem+3.4vw,4.5rem)]",
+              "max-w-[16ch] animate-rise text-hero font-extrabold",
+              hasMedia && "lg:max-w-[18ch] lg:text-[clamp(2.75rem,1rem+3vw,4rem)]",
             )}
           >
             {copy.home.title}
@@ -44,13 +44,13 @@ export function HomeHero({ featuredHref }: { featuredHref: string }) {
           <div className="flex animate-rise flex-wrap gap-3 [animation-delay:180ms]">
             <Link
               href={featuredHref}
-              className="inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 font-bold text-on-accent transition-colors hover:bg-accent-hover hover:text-on-accent"
+              className="inline-flex h-12 items-center gap-2 rounded-control bg-accent px-6 font-bold text-on-accent transition-colors hover:bg-accent-hover hover:text-on-accent"
             >
               {copy.home.heroPrimary} <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="#signup"
-              className="inline-flex h-12 items-center rounded-full border border-ink/35 px-6 font-semibold text-ink transition-colors hover:border-ink hover:text-ink"
+              className="inline-flex h-12 items-center rounded-control border border-ink/35 px-6 font-semibold text-ink transition-colors hover:border-ink hover:text-ink"
             >
               {copy.home.heroSecondary}
             </Link>
@@ -79,7 +79,7 @@ function HeroMedia() {
   const position =
     "-mr-5 sm:-mr-8 lg:absolute lg:inset-y-0 lg:left-[calc(50%+1.5rem)] lg:right-0 lg:mr-0 lg:flex lg:items-center";
   const frame =
-    "relative aspect-[4/3] w-[calc(100%+1.25rem)] animate-rise overflow-hidden rounded-l-[1.25rem] border-y border-l border-ink/15 bg-canvas/40 shadow-[-30px_30px_80px_-20px_oklch(0.1_0.02_28/0.8)] [animation-delay:240ms] max-lg:rounded-bl-none max-lg:border-b-0 lg:aspect-auto lg:h-[min(32rem,80%)] lg:w-[54rem] lg:shrink-0";
+    "relative aspect-[4/3] w-[calc(100%+1.25rem)] animate-rise overflow-hidden rounded-l-panel border-y border-l border-ink/15 bg-canvas/40 shadow-[-30px_30px_80px_-20px_oklch(0.1_0.02_28/0.8)] [animation-delay:240ms] max-lg:rounded-bl-none max-lg:border-b-0 lg:aspect-auto lg:h-[min(32rem,80%)] lg:w-[54rem] lg:shrink-0";
 
   if (heroImage) {
     return (

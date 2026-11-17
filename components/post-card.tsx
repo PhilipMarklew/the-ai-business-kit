@@ -13,9 +13,7 @@ export function PostMeta({ post, className }: { post: Post; className?: string }
       {post.draft && (
         <>
           <span aria-hidden="true">·</span>
-          <span className="rounded-full border border-muted px-2 py-0.5 text-xs font-semibold text-ink">
-            Draft
-          </span>
+          <span className="font-semibold text-ink">Draft</span>
         </>
       )}
     </p>
@@ -27,30 +25,64 @@ function TopicTag({ post }: { post: Post }) {
   return <p className="text-sm font-semibold text-link">{topic?.name}</p>;
 }
 
+/** Title link that makes its whole article block clickable. Hover underlines the title only. */
+function TitleLink({ post }: { post: Post }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className="text-ink decoration-2 underline-offset-4 after:absolute after:inset-0 after:content-[''] hover:text-ink group-hover:underline"
+    >
+      {post.title}
+    </Link>
+  );
+}
+
 /**
- * The lead story. Cover and text side by side from tablet up, stacked on a
- * phone. The whole block is one link; the title carries the accessible name.
+ * Lead story for the home page: cover on top, then a large headline. Reads
+ * like the top story of a publication, sized well above everything near it.
+ */
+export function LeadStory({ post }: { post: Post }) {
+  return (
+    <article className="group relative flex flex-col gap-4">
+      <PostCover slug={post.slug} topic={post.topic} className="aspect-[16/9]" />
+      <div className="mt-2 flex flex-col gap-3">
+        <TopicTag post={post} />
+        <h3 className="text-headline font-extrabold">
+          <TitleLink post={post} />
+        </h3>
+        <p className="max-w-[56ch] text-lg text-muted">{post.description}</p>
+        <PostMeta post={post} />
+      </div>
+    </article>
+  );
+}
+
+/** Text-only headline for side lists. No image, so the lead story keeps the weight. */
+export function PostHeadline({ post }: { post: Post }) {
+  return (
+    <article className="group relative flex flex-col gap-1.5 py-5">
+      <TopicTag post={post} />
+      <h3 className="text-lg font-bold leading-snug">
+        <TitleLink post={post} />
+      </h3>
+      <PostMeta post={post} />
+    </article>
+  );
+}
+
+/**
+ * The lead story on /blog: cover and text side by side from tablet up,
+ * stacked on a phone.
  */
 export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headingLevel?: "h2" | "h3" }) {
   const Heading = headingLevel;
   return (
     <article className="group relative grid items-center gap-6 md:grid-cols-[1.15fr_1fr] md:gap-10">
-      <div className="overflow-hidden rounded-panel">
-        <PostCover
-          slug={post.slug}
-          topic={post.topic}
-          className="transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"
-        />
-      </div>
+      <PostCover slug={post.slug} topic={post.topic} />
       <div className="flex flex-col gap-3">
         <TopicTag post={post} />
-        <Heading className="text-headline font-bold">
-          <Link
-            href={`/blog/${post.slug}`}
-            className="text-ink after:absolute after:inset-0 after:content-[''] hover:text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-          >
-            {post.title}
-          </Link>
+        <Heading className="text-headline font-extrabold">
+          <TitleLink post={post} />
         </Heading>
         <p className="text-lg text-muted">{post.description}</p>
         <PostMeta post={post} className="mt-1" />
@@ -63,22 +95,11 @@ export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headin
 export function PostRow({ post }: { post: Post }) {
   return (
     <article className="group relative grid grid-cols-[6.5rem_1fr] items-start gap-4 sm:grid-cols-[9rem_1fr] sm:gap-5">
-      <div className="overflow-hidden rounded-panel">
-        <PostCover
-          slug={post.slug}
-          topic={post.topic}
-          className="aspect-square transition-transform duration-500 ease-out-quart group-hover:scale-[1.05]"
-        />
-      </div>
+      <PostCover slug={post.slug} topic={post.topic} className="aspect-square" />
       <div className="flex min-w-0 flex-col gap-1.5">
         <TopicTag post={post} />
         <h3 className="text-title font-bold">
-          <Link
-            href={`/blog/${post.slug}`}
-            className="text-ink after:absolute after:inset-0 after:content-[''] hover:text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-          >
-            {post.title}
-          </Link>
+          <TitleLink post={post} />
         </h3>
         <p className="line-clamp-2 text-muted max-sm:hidden">{post.description}</p>
         <PostMeta post={post} />
