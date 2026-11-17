@@ -13,8 +13,8 @@ export function ToolShellHeading() {
   if (!tool) return null;
   return (
     <div className="mb-8 flex flex-col gap-2">
-      <h1 className="text-display font-semibold">{tool.title}</h1>
-      <p className="text-muted">{tool.description}</p>
+      <h1 className="text-display font-extrabold">{tool.title}</h1>
+      <p className="max-w-[52ch] text-lg text-muted">{tool.description}</p>
     </div>
   );
 }

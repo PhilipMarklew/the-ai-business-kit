@@ -5,6 +5,7 @@ import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { copy } from "@/lib/copy";
 import { postSubscribe, type SubscribeError } from "@/lib/subscribe-client";
+import { cn } from "@/lib/utils";
 
 type Status = "idle" | "sending" | "success";
 type FieldError = SubscribeError | "network" | null;
@@ -15,8 +16,12 @@ const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * Email signup. Presentational shell wired to the POST /api/subscribe contract
  * through lib/subscribe-client.ts. States: idle, sending (button disabled),
  * error (inline, no reload), success.
+ *
+ * tone="accent" is for the coral signup band: every colour switches to
+ * --on-accent, because muted text, links and the focus ring fail on coral.
  */
-export function SignupForm() {
+export function SignupForm({ tone = "default" }: { tone?: "default" | "accent" }) {
+  const onAccent = tone === "accent";
   const id = useId();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<FieldError>(null);
@@ -56,7 +61,7 @@ export function SignupForm() {
 
   if (status === "success") {
     return (
-      <p role="status" className="font-medium">
+      <p role="status" className="text-lg font-semibold">
         {copy.signup.success}
       </p>
     );
@@ -68,9 +73,13 @@ export function SignupForm() {
   const formError = error && !emailError && !consentError ? error : null;
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className={cn("flex flex-col gap-4", onAccent && "[&_:focus-visible]:outline-on-accent")}
+    >
       <div className="flex flex-col gap-2">
-        <label htmlFor={emailId} className="text-sm font-medium">
+        <label htmlFor={emailId} className="text-sm font-semibold">
           {copy.signup.label}
         </label>
         <input
@@ -83,7 +92,10 @@ export function SignupForm() {
           disabled={sending}
           aria-invalid={emailError}
           aria-describedby={emailError ? emailErrId : undefined}
-          className="h-11 w-full rounded-control border border-muted bg-surface px-3 text-base text-ink disabled:opacity-60"
+          className={cn(
+            "h-12 w-full rounded-control border bg-canvas px-4 text-base text-ink disabled:opacity-60",
+            onAccent ? "border-on-accent" : "border-muted",
+          )}
         />
         {emailError && (
           <p id={emailErrId} className="text-sm">
@@ -109,11 +121,16 @@ export function SignupForm() {
             disabled={sending}
             aria-invalid={consentError}
             aria-describedby={consentError ? consentErrId : undefined}
-            className="mt-1 size-5 shrink-0 accent-accent"
+            className={cn("mt-0.5 size-5 shrink-0", onAccent ? "accent-on-accent" : "accent-accent")}
           />
-          <p className="text-sm text-muted">
+          <p className={cn("text-sm", onAccent ? "text-on-accent" : "text-muted")}>
             <label htmlFor={consentId}>{copy.signup.consent}</label>{" "}
-            <Link href="/privacy">{copy.signup.privacyLinkText}</Link>
+            <Link
+              href="/privacy"
+              className={cn("underline", onAccent && "font-semibold text-on-accent hover:text-on-accent")}
+            >
+              {copy.signup.privacyLinkText}
+            </Link>
           </p>
         </div>
         {consentError && (
@@ -124,7 +141,14 @@ export function SignupForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Button type="submit" disabled={sending} className="h-11 px-5 text-base sm:self-start">
+        <Button
+          type="submit"
+          disabled={sending}
+          className={cn(
+            "h-12 px-6 text-base font-bold sm:self-start",
+            onAccent && "bg-on-accent text-accent hover:bg-on-accent/85 hover:text-accent",
+          )}
+        >
           {sending ? copy.signup.sending : copy.signup.button}
         </Button>
         <p id={formErrId} role="alert" className="text-sm">

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageContainer>
-      <h1 className="text-display font-semibold">{copy.about.heading}</h1>
-      <p className="mt-5 whitespace-pre-line">{copy.about.body}</p>
+      <h1 className="text-display font-extrabold">{copy.about.heading}</h1>
+      <p className="mt-6 whitespace-pre-line text-lg">{copy.about.body}</p>
       <section aria-labelledby="about-author" className="mt-12">
-        <h2 id="about-author" className="text-xl font-semibold tracking-tight">
+        <h2 id="about-author" className="text-title font-bold">
           {authorDisplayName}
         </h2>
         <p className="text-sm text-muted">{author.role}</p>

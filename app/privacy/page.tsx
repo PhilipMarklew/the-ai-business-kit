@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <PageContainer>
-      <h1 className="text-display font-semibold">{copy.privacy.heading}</h1>
-      <p className="mt-5 whitespace-pre-line">{copy.privacy.body}</p>
+      <h1 className="text-display font-extrabold">{copy.privacy.heading}</h1>
+      <p className="mt-6 whitespace-pre-line leading-relaxed">{copy.privacy.body}</p>
     </PageContainer>
   );
 }

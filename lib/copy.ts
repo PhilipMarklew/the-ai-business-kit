@@ -115,20 +115,50 @@ export const copy = {
     "Free AI tools and plain-English guides that help small businesses get found online, earn trust and run better.",
 
   home: {
-    title: "Free AI tools to help your small business get found online",
-    // Honest about the state of the site: nothing is published yet.
+    title: "Plain-English AI for small businesses",
     intro:
-      "I am building free tools and plain-English guides for small business owners. Nothing is live yet. Sign up and you get the first tool as soon as it ships.",
-    newsletterLink: "Get the first tool by email",
-    listHeading: "What is coming",
-    listItems: [
-      // TODO(phil): the robots.txt tester is the planned first tool (W2-3). Confirm before launch.
-      "Free tools that each do one job in your browser. The first checks whether Google and AI search tools are allowed to read your website.",
-      "Short guides on getting found, earning trust and running your business online with AI.",
-      // TODO(phil): confirm you can keep a cap of one email a week.
-      "An email when a new tool or guide is ready, no more than one a week.",
-    ],
-    signupHeading: "Get the first tool when it is ready",
+      "Guides and free tools that help you get found, earn trust and take the busywork off your plate. No jargon, and nothing to buy.",
+    latestHeading: "Latest posts",
+    allPostsLink: "See every post",
+    emptyHeading: "The first posts are on their way",
+    emptyBody:
+      "I'm writing the first guides now. Sign up below and you'll get each one as soon as it's out.",
+    toolsHeading: "Free tools",
+    toolsLink: "All tools",
+    // TODO(phil): the robots.txt tester is the planned first tool (W2-3). Confirm before launch.
+    toolsComing:
+      "The first tool checks whether Google and AI search tools like ChatGPT are allowed to read your website. It's being built now.",
+  },
+
+  band: {
+    heading: "Get the next guide in your inbox",
+    body: "One email when something new is ready. Free tools and plain-English guides, nothing else.",
+  },
+
+  blog: {
+    title: "Blog",
+    description: "Plain-English guides on getting found, earning trust and running a small business better with AI.",
+    heading: "The blog",
+    intro: "Short, practical guides for small business owners. Pick a topic or read the lot.",
+    empty: "Nothing here yet. The first guides are being written now.",
+  },
+
+  topicPage: {
+    empty: "No posts in this topic yet. They're on the way.",
+  },
+
+  article: {
+    contents: "On this page",
+    related: "Read next",
+    byline: "Written by",
+  },
+
+  tools: {
+    title: "Free tools",
+    description: "Free tools that each do one job for your small business website. No sign-up needed to use them.",
+    heading: "Free tools",
+    intro: "Each tool does one job, runs in your browser and costs nothing. No sign-up needed to use them.",
+    comingHeading: "Coming next",
   },
 
   about: {
@@ -171,12 +201,13 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
   },
 
   footer: {
+    tagline: "Plain-English AI guides and free tools for small businesses. No jargon, no upsell.",
     // Reads "Built by Phil". TODO(phil): add a surname in lib/site.ts if you want it shown.
     builtBy: "Built by",
   },
 
   toolShell: {
-    signupHeading: "Got a result? Get the next tool by email.",
+    signupHeading: "Get the next tool by email",
   },
 
   signup: {
