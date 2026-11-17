@@ -161,6 +161,60 @@
   --heading-tracking-tight: -0.015em;
 }
 
+/*
+ * Page backdrop. Sits behind the top of every page only, then fades out, so
+ * long article text always reads on a plain background. Pure CSS gradients:
+ * no image requests. The body class picks the style (see app/layout.tsx).
+ *   .backdrop-wash      coral light at the top
+ *   .backdrop-ruled     exercise-book paper: ruled lines plus a red margin line
+ *   .backdrop-both      ruled paper under the coral wash
+ */
+:root {
+  --rule: oklch(0.62 0.07 245 / 0.16); /* faint blue ruled line */
+  --margin-rule: oklch(0.6 0.17 25 / 0.35); /* red margin line */
+  --wash: oklch(0.8 0.12 30 / 0.32);
+  --wash-2: oklch(0.86 0.06 60 / 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rule: oklch(0.75 0.05 245 / 0.08);
+    --margin-rule: oklch(0.7 0.15 25 / 0.3);
+    --wash: oklch(0.55 0.14 28 / 0.28);
+    --wash-2: oklch(0.4 0.08 40 / 0.25);
+  }
+}
+
+body[class*="backdrop-"] {
+  position: relative;
+  isolation: isolate;
+}
+body[class*="backdrop-"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: min(70rem, 120vh);
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 100%);
+}
+.backdrop-wash::before {
+  background:
+    radial-gradient(60% 55% at 85% 0%, var(--wash) 0%, transparent 70%),
+    radial-gradient(45% 40% at 10% 5%, var(--wash-2) 0%, transparent 70%);
+}
+.backdrop-ruled::before {
+  background:
+    linear-gradient(to right, transparent calc(50% - 39rem), var(--margin-rule) calc(50% - 39rem), var(--margin-rule) calc(50% - 39rem + 1.5px), transparent calc(50% - 39rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--rule) calc(2rem - 1px), var(--rule) 2rem);
+}
+.backdrop-both::before {
+  background:
+    radial-gradient(60% 55% at 85% 0%, var(--wash) 0%, transparent 70%),
+    radial-gradient(45% 40% at 10% 5%, var(--wash-2) 0%, transparent 70%),
+    linear-gradient(to right, transparent calc(50% - 39rem), var(--margin-rule) calc(50% - 39rem), var(--margin-rule) calc(50% - 39rem + 1.5px), transparent calc(50% - 39rem + 1.5px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(2rem - 1px), var(--rule) calc(2rem - 1px), var(--rule) 2rem);
+}
+
 @utility font-heading {
   font-family: var(--heading-family);
   font-weight: var(--heading-weight);
