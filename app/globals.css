@@ -27,6 +27,8 @@
   --accent-hover: oklch(0.78 0.14 30);
   --link: oklch(0.76 0.15 29);
   --on-accent: oklch(0.16 0.006 28);
+  /* Film grain: light specks, alpha scaled from the noise. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0.11 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
@@ -42,6 +44,7 @@
     --accent-hover: oklch(0.66 0.17 28);
     --link: oklch(0.52 0.17 28);
     --on-accent: oklch(0.16 0.006 28);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     color-scheme: light;
   }
 }
@@ -61,6 +64,8 @@
   --accent-hover: oklch(0.78 0.14 30);
   --link: oklch(0.76 0.15 29);
   --on-accent: oklch(0.16 0.006 28);
+  /* Film grain: light specks, alpha scaled from the noise. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0.11 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
@@ -173,8 +178,13 @@
     font-family: var(--font-sans);
     font-size: 106.25%;
   }
+  /*
+   * Flat canvas plus a fine film grain, tiled from a 240px SVG noise pattern
+   * in --grain. Texture only: no colour, no shapes, nothing to download.
+   */
   body {
-    background: var(--canvas);
+    background-color: var(--canvas);
+    background-image: var(--grain);
   }
   h1,
   h2,
