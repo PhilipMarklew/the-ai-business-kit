@@ -27,7 +27,7 @@ export function SignupBand({
           <p className="max-w-[44ch] text-lg text-muted">{body}</p>
           <FollowLinks className="mt-1" />
         </div>
-        <SignupForm />
+        <SignupForm placement="band" />
       </div>
     </section>
   );
@@ -49,7 +49,7 @@ export function SignupAside({ id = "signup" }: { id?: string }) {
         {copy.band.heading}
       </h2>
       <p className="mt-2 mb-5">{copy.band.body}</p>
-      <SignupForm tone="accent" />
+      <SignupForm tone="accent" placement="home_aside" />
       <FollowLinks tone="accent" className="mt-4" />
     </section>
   );

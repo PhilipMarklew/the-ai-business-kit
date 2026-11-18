@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Literata, Schibsted_Grotesk } from "next/font/google";
+import { AnalyticsScript } from "@/components/analytics-script";
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <OrganizationJsonLd />
+        <AnalyticsScript />
       </body>
     </html>
   );

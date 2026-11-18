@@ -33,7 +33,7 @@ The backlog row, broken into checkable parts. Each has an owner.
 | 7 | Consent text and privacy page suited to UK GDPR / PECR, with a "not legal advice" caveat for Phil to review | Margot | Viktor |
 | 8 | Form abuse protection: rate limit, honeypot or equivalent, server-side validation | Tomás | Viktor |
 | 9 | Search Console property verification and sitemap submission | Phil (guided) | Marcus |
-| 10 | GA4 set up, plus an exploration or filter for AI referrers (chatgpt, perplexity, gemini, copilot) | Phil (guided) | Marcus |
+| 10 | **Superseded by D-013: Umami Cloud replaces GA4; AI referrers show in Umami referrer reports.** Was: GA4 set up, plus an exploration or filter for AI referrers (chatgpt, perplexity, gemini, copilot) | Phil (guided) | Marcus |
 | 11 | Audience tracker: week-1 row with starting numbers (email subs, TikTok, YouTube, X) | Priya | Phil |
 | 12 | Social accounts created with the hub link in each bio | Phil | Margot (bio copy) |
 
@@ -71,7 +71,7 @@ Items 9, 10 and 12 need Phil's logins. The team writes exact click-by-click step
 - [ ] Test signup reaches the provider, consent wording is shown at the point of signup, and the confirmation or welcome email arrives
 - [ ] Form rejects bad input and survives a rapid-fire submit test
 - [ ] Search Console shows the property verified and the sitemap submitted
-- [ ] GA4 receives a real pageview, and the AI-referrer exploration exists
+- [ ] Umami receives a real pageview from the live domain (was GA4, see D-013)
 - [ ] Three social accounts exist, each with the hub link in bio
 - [ ] Week-1 row is in the audience tracker
 - [ ] A new empty page can be added at `/tools/test-tool` using the shared layout in under 10 minutes (then removed)

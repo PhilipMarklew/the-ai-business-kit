@@ -13,7 +13,7 @@ export default function ToolsLayout({ children }: { children: ReactNode }) {
         <h2 id="tool-signup" className="mb-5 text-title font-heading">
           {copy.toolShell.signupHeading}
         </h2>
-        <SignupForm />
+        <SignupForm placement="tool_page" />
       </section>
     </div>
   );

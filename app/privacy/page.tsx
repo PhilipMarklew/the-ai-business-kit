@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AnalyticsOptOut } from "@/components/analytics-opt-out";
 import { PageContainer } from "@/components/page-container";
 import { copy } from "@/lib/copy";
 import { pageMetadata } from "@/lib/metadata";
@@ -14,6 +15,7 @@ export default function PrivacyPage() {
     <PageContainer>
       <h1 className="text-display font-heading">{copy.privacy.heading}</h1>
       <p className="mt-6 whitespace-pre-line leading-relaxed">{copy.privacy.body}</p>
+      <AnalyticsOptOut />
     </PageContainer>
   );
 }

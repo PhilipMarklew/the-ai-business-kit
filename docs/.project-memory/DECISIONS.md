@@ -26,7 +26,7 @@ Why: est. $5-8/month; persistent Node server suits outbound fetch routes; CDN fr
 Rejected: Cloudflare Free in front (DNS/proxy admin, client-IP header issues). Usage alert $10, hard limit $20/month.
 Owner: Marcus (Phil decided D3). Affects: Yuki (deploy), Tomas (rate limit keying).
 
-## D-006 | 2026-11-17 | S00 D2 recommendation: Kit Free (PROPOSED, Phil to confirm)
+## D-006 | 2026-11-17 | S00 D2 recommendation: Kit Free (CONFIRMED 2026-11-18, Phil set up the account)
 Why: 10,000 free subs, no send limit, API on free, double opt-in via API, CSV export, DPA names UK GDPR + IDTA.
 Rejected: beehiiv (ad-network controller profiling), Brevo (300/day), MailerLite (250 cap), Buttondown (100 cap; runner-up at $9/mo).
 Owner: Phil on Marcus's recommendation. Affects: Tomas, Margot (consent wording), Viktor.
@@ -43,7 +43,7 @@ Owner: Marcus (Astrid to confirm). Affects: Tomas, Margot, Viktor.
 
 ## D-009 | 2026-11-17 | S00 D1: hub name "The AI Business Kit"
 Why: Phil's choice. .com and TikTok handle available per Phil.
-Open checks: X and YouTube handles, UK IPO trademark. Domain not yet bought as far as known.
+Checks done 2026-11-18 (Phil): X, YouTube and TikTok handles available; no UK trademarks or businesses under the name. Domain not yet bought (Phil: soon).
 Owner: Phil. Affects: Margot (copy), Yuki (SITE_NAME), Phil (domain, social accounts).
 
 ## D-010 | 2026-11-17 | Scope change: site is a blog with tools, articles first
@@ -55,3 +55,14 @@ Owner: Phil. Affects: Yuki, Margot, Viktor, Eleanor, Quinn. Supersedes D-003 not
 Why: Phil's choice (Runpod-like). Accent oklch(0.72 0.16 28), Manrope via next/font. Brand context in PRODUCT.md.
 Rejected: hi-vis yellow / Archivo "signpost" concept (Phil). Noor's visual direction spec superseded (marked in file; signup-placement and "don't" rules still apply).
 Owner: Phil. Affects: Yuki. No DESIGN.md yet; suggest /impeccable document.
+
+## D-012 | 2026-11-17 | SEO: shared metadata helpers and proxy-level 404s
+Why: Next replaces openGraph/alternates per page, so every page showed the home share title; Cache Components streams a 200 shell before notFound(), causing soft 404s.
+Shape: lib/metadata.ts helpers used by every page; proxy.ts returns 404 for unknown blog and topic slugs.
+Owner: Yuki (build), recorded by Priya. Affects: anyone adding routes (update proxy matcher), Viktor (CSP open).
+
+## D-013 | 2026-11-18 | Analytics: Umami Cloud Hobby (free, cookieless), replaces GA4
+Why: Phil wants a full funnel with no consent banner; cookieless statistical use fits the PECR exception. Free tier. EU region (permanent choice at creation).
+Rejected: GA4 (cookies, consent banner); PostHog (cookie-first default, heavier script, more config risk).
+Shape: lib/analytics.ts is the only Umami-aware file; events signup, signup_error, follow_click, tool_run; GPC/DNT respected; opt-out at /privacy#opt-out. Handoff item 10 (GA4) superseded.
+Owner: Phil. Built by Yuki, copy by Margot. Affects: Viktor (CSP hosts), Phil (Umami setup).

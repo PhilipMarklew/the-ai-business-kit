@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { track, type SignupPlacement } from "@/lib/analytics";
 import { copy } from "@/lib/copy";
 import { postSubscribe, type SubscribeError } from "@/lib/subscribe-client";
 import { cn } from "@/lib/utils";
@@ -20,9 +22,18 @@ const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * tone="accent" is for the coral signup band: every colour switches to
  * --on-accent, because muted text, links and the focus ring fail on coral.
  */
-export function SignupForm({ tone = "default" }: { tone?: "default" | "accent" }) {
+export function SignupForm({
+  tone = "default",
+  placement,
+}: {
+  tone?: "default" | "accent";
+  placement: SignupPlacement;
+}) {
   const onAccent = tone === "accent";
   const id = useId();
+  // On a tool page, the slug comes from /tools/<slug> so we can see which tool earns signups.
+  const pathname = usePathname();
+  const toolSlug = placement === "tool_page" ? /^\/tools\/([^/]+)/.exec(pathname)?.[1] : undefined;
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<FieldError>(null);
 
@@ -41,10 +52,12 @@ export function SignupForm({ tone = "default" }: { tone?: "default" | "accent" }
     const website = String(form.get("website") ?? "");
 
     if (!email || email.length > 254 || !EMAIL_SHAPE.test(email)) {
+      track("signup_error", { error: "invalid_email" });
       setError("invalid_email");
       return;
     }
     if (!consent) {
+      track("signup_error", { error: "consent_required" });
       setError("consent_required");
       return;
     }
@@ -52,8 +65,10 @@ export function SignupForm({ tone = "default" }: { tone?: "default" | "accent" }
     setStatus("sending");
     const result = await postSubscribe({ email, consent: true, website });
     if (result.ok) {
+      track("signup", toolSlug ? { placement, tool: toolSlug } : { placement });
       setStatus("success");
     } else {
+      track("signup_error", { error: result.error });
       setError(result.error);
       setStatus("idle");
     }

@@ -1,3 +1,4 @@
+import { FollowLink } from "@/components/tracked-link";
 import { liveSocial } from "@/lib/social";
 import { cn } from "@/lib/utils";
 
@@ -13,13 +14,15 @@ export function FollowLinks({ tone = "default", className }: { tone?: "default" 
       {liveSocial.map((s, i) => (
         <span key={s.name}>
           {i > 0 && (i === liveSocial.length - 1 ? " or " : ", ")}
-          <a
+          <FollowLink
+            network={s.name}
+            placement="follow_links"
             href={s.url}
             rel="me noopener"
             className={cn("font-semibold underline", tone === "accent" && "text-on-accent hover:text-on-accent")}
           >
             {s.name}
-          </a>
+          </FollowLink>
         </span>
       ))}
       .

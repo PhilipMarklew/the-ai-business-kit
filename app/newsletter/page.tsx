@@ -38,7 +38,7 @@ export default function NewsletterPage() {
         <FollowLinks />
       </div>
       <div className="self-start rounded-panel border border-line bg-surface p-6 sm:p-8">
-        <SignupForm />
+        <SignupForm placement="newsletter_page" />
       </div>
     </div>
   );

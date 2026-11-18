@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FollowLink } from "@/components/tracked-link";
 import { Wordmark } from "@/components/site-header";
 import { copy } from "@/lib/copy";
 import { authorDisplayName } from "@/lib/site";
@@ -38,9 +39,15 @@ export function SiteFooter() {
             {links.map((l) => (
               <li key={l.href}>
                 {l.external ? (
-                  <a href={l.href} rel="me noopener" className="text-muted hover:text-ink">
+                  <FollowLink
+                    network={l.label}
+                    placement="footer"
+                    href={l.href}
+                    rel="me noopener"
+                    className="text-muted hover:text-ink"
+                  >
                     {l.label}
-                  </a>
+                  </FollowLink>
                 ) : (
                   <Link href={l.href} className="text-muted hover:text-ink">
                     {l.label}
@@ -48,6 +55,11 @@ export function SiteFooter() {
                 )}
               </li>
             ))}
+            <li>
+              <Link href="/privacy#opt-out" className="text-muted hover:text-ink">
+                {copy.privacy.optOut.footerLink}
+              </Link>
+            </li>
             <li className="md:ml-auto">
               {copy.footer.builtBy} {authorDisplayName}
             </li>

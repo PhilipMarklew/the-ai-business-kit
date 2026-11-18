@@ -2,14 +2,16 @@
  * All page copy lives here so it can be edited in one file.
  *
  * Voice: Phil, first person, plain and direct. No em dashes. Checked against
- * docs/writing-style-phil.md and stop-slop on 17 Nov 2026.
+ * docs/writing-style-phil.md and stop-slop on 18 Nov 2026.
  *
  * Open markers (grep for them before launch):
  *   TODO(phil)   needs a fact or a decision from Phil. Visible in [brackets]
  *                inside strings where the page would otherwise say something false.
- *   TODO(d2)     true for Kit (the recommended email provider), may differ if
- *                Phil picks another. Swap `provider` and `providerFacts` below.
- *   TODO(viktor) the GA4 / cookie consent question. Not decided here.
+ *
+ * Settled and removed: the email provider is Kit (D-006) and double opt-in is on
+ * and confirmed working. `provider` and `providerFacts` stay as the one place to
+ * change either. Viktor's Umami checks are in, and the "Cookies and analytics"
+ * section follows his finding U1 (docs/.project-memory/specs/security-audit-S00-1.md).
  *
  * ---------------------------------------------------------------------------
  * PRIVACY AND CONSENT COPY: NOT LEGAL ADVICE. PHIL TO REVIEW.
@@ -30,15 +32,36 @@
  *    lawful basis, retention, recipients, transfers, rights). Found via search
  *    summary; the page itself was not opened:
  *    https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/
- *  - Storage and access technologies (cookies; updated 29 Apr 2026). The page body
- *    did not load, so the analytics / "statistical purposes" exception was NOT read:
+ *  - Storage and access technologies (cookies; guidance finalised 29 Apr 2026).
+ *    Viktor read the "What are the exceptions?" page on 18 Nov 2026 (see
+ *    docs/.project-memory/specs/security-audit-S00-1.md):
  *    https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/
  *
- * Open question for Viktor: does GA4 need a PECR cookie consent banner? The ICO
- * guidance mentions a "statistical purposes" exception added by the Data (Use and
- * Access) Act. Whether GA4's configuration qualifies is not decided here. Until
- * it is, the privacy copy says no analytics cookies are used, which stops being
- * true the day GA4 ships. Rewrite that section first.
+ * Analytics: Umami Cloud Hobby (free, 6 months retention, per umami.is/pricing,
+ * read 18 Nov 2026). The "Cookies and analytics" section is written to fit the
+ * statistical purposes exception: sole purpose is statistics to improve the
+ * service, clear information, a simple and free way to object, no longer kept
+ * than needed, and the provider is a processor. Each of those has a matching
+ * line in the section. If any of them stops being true, the exception no longer
+ * applies and consent is needed.
+ * The section says Umami stores visit data in the EU. That holds only if Phil
+ * picks the EU region at Umami signup. The region cannot be changed afterwards.
+ * Say "pseudonymous" if needed. Never call the visitor code "anonymous".
+ * For Phil to confirm: the section names "legitimate interests" as the UK GDPR
+ * basis for counting visits. That is my reading, and Phil should confirm it.
+ * Opt-out storage: the choice lives in this browser only (Umami's disable flag).
+ * The `optOut` copy and the last paragraph of the section say so. Keep them true
+ * if Yuki changes how it is stored.
+ * Do Not Track is already honoured. The section also says Global Privacy Control
+ * is honoured, which is true only once Yuki's GPC check ships.
+ *
+ * Kit facts (kit.com/dpa, read 18 Nov 2026 via a page summary):
+ * TODO(phil): open kit.com/dpa and confirm three lines in `providerFacts`
+ * before launch. Section 5.3 relies on the SCCs "in tandem with the UK IDTA",
+ * which the document defines as an Addendum. Attachment 3 (updated 9 Oct 2026)
+ * lists OpenAI OpCo, LLC for application AI functionality, and every
+ * sub-processor processes in the USA. The DPA does not state Kit's own primary
+ * location.
  *
  * Consent record (architecture D-008): the provider holds email, time, form and
  * confirmation. The wording is tracked by `signup.consentVersion`. Bump it on ANY
@@ -71,8 +94,24 @@ const providerFacts = {
     "After you sign up, I send one email asking you to confirm. You are not on the list until you click the link.",
 };
 
+/**
+ * Analytics facts, written for Umami Cloud from Viktor's verification of
+ * 18 Nov 2026 (finding U1). Assumes Phil picks the EU data region.
+ */
+const analyticsFacts = {
+  tool: "Umami Cloud",
+  /** How Umami tells visitors apart. Pseudonymous, so never "anonymous". */
+  identification:
+    "Umami Cloud tells visitors apart with a code made from your IP address and browser details, mixed with a value that changes each month. It does not store your IP address with your visits. The code changes at the start of each month, so it cannot link this month's visits to last month's. I treat the code as personal data.",
+  /** Where Umami Cloud stores the data, and how UK transfers are covered. */
+  location:
+    "It stores the visit data in the EU. Umami is a US company, and some of its service providers, for example for hosting and support, are in the US. Transfers from the UK are covered by the UK Addendum to the EU standard contractual clauses in Umami's data processing agreement.",
+  /** Retention on the free plan, per umami.is/pricing, read 18 Nov 2026. */
+  retention: "6 months",
+};
+
 /** Privacy notice. Sections are separated by blank lines; the page keeps line breaks. */
-const privacyBody = `Last updated: 17 November 2026
+const privacyBody = `Last updated: 18 November 2026
 
 Who I am
 I am Phil, and I run ${brand}. I decide how your data is used, so I am the controller under UK data protection law. [TODO(phil): add your full name, whether you trade as a sole trader or a company, and a contact email or postal address.]
@@ -100,11 +139,36 @@ Every email has an unsubscribe link. One click and you are off the list. You can
 Your rights
 You can ask me for a copy of your data. You can ask me to correct it or delete it, object to how I use it, or withdraw your consent at any time. Withdrawing does not undo anything I did before. Email me at [TODO(phil): contact email]. If you are unhappy with my answer, you can complain to the Information Commissioner's Office at ico.org.uk.
 
-Cookies and analytics
-This site does not use analytics or advertising cookies today. [TODO(viktor): GA4 is due to be added. Decide whether it needs a cookie consent banner under PECR, then rewrite this section before GA4 goes live.]
-
 Changes
-If how I use your data changes, I will update this page and the date at the top.`;
+If how I use your data changes, I will update this page and the date at the top.
+
+Cookies and analytics
+This site sets no cookies. I use ${analyticsFacts.tool} to count visits. It shows me which pages and tools people use, and where they leave before signing up. I use that to improve this site and for nothing else. My legal basis is legitimate interests, because I need to know which pages and tools work.
+
+For each visit, ${analyticsFacts.tool} records:
+- the page address and title
+- the site you came from, and any campaign tags on the link
+- your browser and its version
+- your operating system
+- your device type and screen size
+- your language
+- your country, region and city, worked out from your IP address
+
+It also counts these actions:
+- signing up, and which form you used
+- signup errors
+- clicks on my social links
+- using a tool
+
+${analyticsFacts.tool} does not receive anything you type into a form, including your email address. It stores no name or email address with a visit, and I do not link visits to the signup list.
+
+${analyticsFacts.identification} Umami Cloud and its providers may keep IP addresses in short-term security logs.
+
+${analyticsFacts.tool} is my processor. It can only use this data to give me these statistics, and I do not share it with anyone for advertising. ${analyticsFacts.location} On the free plan it keeps data for ${analyticsFacts.retention}.
+
+Browsers that send Do Not Track or Global Privacy Control are not counted.
+
+You can opt out at any time with the button below. Opting out saves one setting in this browser to remember your choice. Nothing else is stored on your device.`;
 
 export const copy = {
   // Used for meta description, Open Graph and JSON-LD.
@@ -186,9 +250,30 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
 
   privacy: {
     title: "Privacy",
-    description: "What data this site collects, why, and how to unsubscribe or ask for it to be deleted.",
+    description:
+      "How this site handles your data: what it collects, why, who holds it, how visits are counted, and how to unsubscribe or opt out.",
     heading: "Privacy",
+    /** Ends with the "Cookies and analytics" section. Render the opt-out control directly after it. */
     body: privacyBody,
+    /**
+     * Copy for the visit-counting opt-out control, shown under the body.
+     * `heading` is the control's heading. `stopCounting` and `countAgain` are the
+     * button labels (the button shows the action that is available now).
+     * `confirmStopped` and `confirmCounting` appear after a click, in an
+     * aria-live region. `browserNote` is always visible. `footerLink` is the
+     * sitewide footer link text, pointing to /privacy#opt-out.
+     */
+    optOut: {
+      heading: "Opt out of visit counting",
+      explanation: "Stop Umami Cloud counting your visits to this site.",
+      stopCounting: "Stop counting my visits",
+      countAgain: "Count my visits again",
+      confirmStopped: "Done. Visits from this browser are no longer counted.",
+      confirmCounting: "Visits from this browser are counted again.",
+      browserNote:
+        "Your choice is saved in this browser only. Repeat it on each browser and device you use. Clearing your site data in this browser removes it.",
+      footerLink: "Analytics opt-out",
+    },
   },
 
   newsletter: {
