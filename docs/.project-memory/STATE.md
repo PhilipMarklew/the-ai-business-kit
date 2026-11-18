@@ -1,6 +1,8 @@
 # STATE
 
 ## Since last session (2026-11-18, later)
+- D-016: site voice is brand-led (no I, no we, Phil as named author only). Organization JSON-LD confirmed; Organization-or-Person question settled. CLAUDE.md updated
+- Copy voice rewrite in progress on feat/s00-1-content-first (Margot, lib/ app/ components/), uncommitted
 - Domain theaibusinesskit.com live on Railway behind Cloudflare; apex canonical, www 301s to apex (D-014)
 - Umami ID set in Railway and .env.local; tracker, opt-out and query stripping verified in a browser (no code changes)
 - Phil excludes own visits with the /privacy opt-out button, per browser; no ?notrack link
@@ -31,6 +33,7 @@ Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance chec
 ## Decisions (see DECISIONS.md)
 - D1 DECIDED (D-009). D3 hosting DECIDED (D-005). D-010 blog scope, D-011 design DECIDED.
 - D2 DECIDED: Kit Free (D-006). D-013 analytics: Umami Cloud.
+- D-016 voice brand-led DECIDED 2026-11-18. Rewrite not yet committed; check privacy still names Phil as controller, consent wording unchanged.
 - D4 consent records: proposed provider only (D-008); Astrid to confirm.
 
 ## Blockers / flags

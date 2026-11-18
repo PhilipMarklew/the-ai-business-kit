@@ -14,7 +14,7 @@ Owner: Phil. Duration: 12-week plan. Source of truth: keyword-shortlist-and-cont
 - No outreach, community building, SaaS, affiliate or subscription revenue.
 - No LinkedIn. Social: TikTok, YouTube Shorts (main), X (secondary). Video: screen recording plus voiceover, no face.
 - Tools live at /tools/<name> as isolated pages. URL pattern and layout must allow this without rework.
-- Copy goes through the writing-style-phil skill and stop-slop. Direct, plain, slightly British. The "Writing rules (non-negotiable)" section below overrides both.
+- Copy goes through the writing-style-phil skill and stop-slop. Direct, plain, slightly British. writing-style-phil sets tone and plainness only; site voice is brand-led (D-016): no "I", no "we", Phil named as author only. The "Writing rules (non-negotiable)" section below overrides both.
 - Do not build llms.txt or FAQ rich-result work (see handoff section 7).
 
 ## Writing rules (non-negotiable)
