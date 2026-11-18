@@ -31,7 +31,8 @@ export const site: { name: string; url: string } = {
 
 /**
  * The named author. Used by the About page, the footer and the Organization
- * JSON-LD, so the three always match.
+ * JSON-LD, so the three always match. Site copy speaks as the brand, so Phil
+ * appears by name only as author, email sender and privacy controller.
  * TODO(copy): Phil confirms surname and whether to show it. Margot writes the bio.
  */
 export const author = {

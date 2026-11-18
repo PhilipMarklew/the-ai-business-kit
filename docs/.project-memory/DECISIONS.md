@@ -78,3 +78,8 @@ Shape: Cloudflare managed robots.txt off (Phil). app/robots.ts allows Googlebot,
 Edge: Cloudflare also returns 403 to some training crawlers at the edge (seen with GPTBot, ClaudeBot, CCBot and Bytespider user agents, 18 Nov 2026). Kept on, as it matches this decision. Search agents get 200.
 Note: Google-Extended also covers Gemini grounding, so Gemini apps may not use these pages in answers. Google says it does not affect inclusion or ranking in Google Search.
 Owner: Phil. Affects: Yuki (robots.ts), K03-T1 tester (use this site as a test case).
+
+## D-016 | 2026-11-18 | Site voice is brand-led, not Phil first person
+Why: first person came from the writing-style-phil skill, not a strategy call. No-face video, no LinkedIn, no outreach or community mean readers cannot get to know Phil, so a personal brand has costs without the main benefit. Brand-led protects Phil's privacy, fits brand-name social accounts, allows help or handover later.
+Shape: pages speak as "The AI Business Kit" or "this site", neutral voice, no "I/me/my", never "we/our/us" (one person, no team). Phil stays as named author ("Written by Phil" byline on guides, one factual line on About) and email sender "Phil at The AI Business Kit". /privacy names Phil as data controller (UK GDPR); rest in brand voice. Consent checkbox wording unchanged (reader's "I"), so no new consent version. Organization JSON-LD confirmed; settles "Organization (or Person)" in handoff item 5.
+Owner: Phil. Affects: Margot (copy rewrite), Yuki (byline, JSON-LD), Tomas (Kit sender name).

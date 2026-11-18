@@ -1,7 +1,12 @@
 /**
  * All page copy lives here so it can be edited in one file.
  *
- * Voice: Phil, first person, plain and direct. No em dashes. Checked against
+ * Voice: the brand, neutral and impersonal, plain and direct. Use `${brand}`,
+ * "this site" or plain impersonal phrasing. Never "we", "our" or "us" (one person
+ * runs the site, so "we" implies a team). No "I", "me" or "my" except where the
+ * reader is speaking (the consent checkbox, the opt-out buttons). Phil appears as
+ * the author, as the email sender ("Phil at ${brand}"), and once in the privacy
+ * notice as the controller. No em dashes. Checked against
  * docs/writing-style-phil.md and stop-slop on 18 Nov 2026.
  *
  * Open markers (grep for them before launch):
@@ -88,10 +93,9 @@ const providerFacts = {
   /** The transfer tool the provider's DPA relies on. */
   transferTool: "the UK International Data Transfer Addendum",
   /** Sub-processors worth naming. Kit's list includes OpenAI. */
-  subprocessors: "Its list of service providers includes OpenAI.",
+  subprocessors: `${provider}'s list of service providers includes OpenAI.`,
   /** Double opt-in: the provider emails a confirmation link first. */
-  doubleOptIn:
-    "After you sign up, I send one email asking you to confirm. You are not on the list until you click the link.",
+  doubleOptIn: `After you sign up, ${brand} sends one email asking you to confirm. You are not on the list until you click the link.`,
 };
 
 /**
@@ -101,8 +105,7 @@ const providerFacts = {
 const analyticsFacts = {
   tool: "Umami Cloud",
   /** How Umami tells visitors apart. Pseudonymous, so never "anonymous". */
-  identification:
-    "Umami Cloud tells visitors apart with a code made from your IP address and browser details, mixed with a value that changes each month. It does not store your IP address with your visits. The code changes at the start of each month, so it cannot link this month's visits to last month's. I treat the code as personal data.",
+  identification: `Umami Cloud tells visitors apart with a code made from your IP address and browser details, mixed with a value that changes each month. It does not store your IP address with your visits. The code changes at the start of each month, so it cannot link this month's visits to last month's. ${brand} treats the code as personal data.`,
   /** Where Umami Cloud stores the data, and how UK transfers are covered. */
   location:
     "It stores the visit data in the EU. Umami is a US company, and some of its service providers, for example for hosting and support, are in the US. Transfers from the UK are covered by the UK Addendum to the EU standard contractual clauses in Umami's data processing agreement.",
@@ -113,37 +116,37 @@ const analyticsFacts = {
 /** Privacy notice. Sections are separated by blank lines; the page keeps line breaks. */
 const privacyBody = `Last updated: 18 November 2026
 
-Who I am
-I am Phil, and I run ${brand}. I decide how your data is used, so I am the controller under UK data protection law. [TODO(phil): add your full name, whether you trade as a sole trader or a company, and a contact email or postal address.]
+Who runs this site
+Phil runs ${brand} and decides how your data is used, which makes Phil the controller under UK data protection law. Email Phil at phil@theaibusinesskit.com
 
-What I collect
-If you sign up, I collect your email address. ${provider} also records when you signed up, which form you used, which version of the consent wording you saw, and when you confirmed. I ask for nothing else.
+What the site collects
+If you sign up, ${brand} collects your email address. ${provider} also records when you signed up, which form you used, which version of the consent wording you saw, and when you confirmed. ${brand} asks for nothing else.
 
-Why I use it, and the legal basis
-I use your email address to send you new tools and guides from ${brand}. I do it because you agreed. Consent is the legal basis under UK GDPR, and consent is what the Privacy and Electronic Communications Regulations (PECR) require for marketing email. I do not sell your address or use it for anything else.
+Why your data is used, and the legal basis
+${brand} uses your email address to send you new tools and guides. It does this because you agreed. Consent is the legal basis under UK GDPR, and consent is what the Privacy and Electronic Communications Regulations (PECR) require for marketing email. ${brand} does not sell your address or use it for anything else.
 
 Who handles it
-I use ${provider} to store your email address and send the emails. ${provider} is my processor, so it can only use your data on my instructions. ${providerFacts.subprocessors} ${provider} stores data in ${providerFacts.location}. The transfer from the UK relies on ${providerFacts.transferTool} in ${provider}'s data processing agreement.
+${brand} uses ${provider} to store your email address and send the emails. ${provider} is its processor, so it can only use your data on ${brand}'s instructions. ${providerFacts.subprocessors} ${provider} stores data in ${providerFacts.location}. The transfer from the UK relies on ${providerFacts.transferTool} in ${provider}'s data processing agreement.
 
 This site runs on Railway. Web servers keep technical logs, which can include your IP address. When you submit the signup form, the site also checks your IP address to block spam. It holds that in memory for a few minutes and does not store it.
 
 Confirming your address
 ${providerFacts.doubleOptIn}
 
-How long I keep it
-I keep your email address until you unsubscribe or ask me to delete it. If you unsubscribe, I keep a note that you opted out so I do not email you again.
+How long your data is kept
+${brand} keeps your email address until you unsubscribe or ask for it to be deleted. If you unsubscribe, ${brand} keeps a note that you opted out so it does not email you again.
 
 Unsubscribing
-Every email has an unsubscribe link. One click and you are off the list. You can also email me and I will remove you.
+Every email has an unsubscribe link. One click and you are off the list. You can also ask by email and ${brand} will remove you.
 
 Your rights
-You can ask me for a copy of your data. You can ask me to correct it or delete it, object to how I use it, or withdraw your consent at any time. Withdrawing does not undo anything I did before. Email me at [TODO(phil): contact email]. If you are unhappy with my answer, you can complain to the Information Commissioner's Office at ico.org.uk.
+You can ask ${brand} for a copy of your data. You can ask it to correct or delete your data, object to how it uses your data, or withdraw your consent at any time. Withdrawing does not undo anything ${brand} did before. Email hello@theaibusinesstoolkit.com. If you are unhappy with the answer, you can complain to the Information Commissioner's Office at ico.org.uk.
 
 Changes
-If how I use your data changes, I will update this page and the date at the top.
+If how ${brand} uses your data changes, it will update this page and the date at the top.
 
 Cookies and analytics
-This site sets no cookies. I use ${analyticsFacts.tool} to count visits. It shows me which pages and tools people use, and where they leave before signing up. I use that to improve this site and for nothing else. My legal basis is legitimate interests, because I need to know which pages and tools work.
+This site sets no cookies. ${brand} uses ${analyticsFacts.tool} to count visits. The counts show which pages and tools people use, and where they leave before signing up. ${brand} uses that to improve this site and for nothing else. The legal basis is legitimate interests, because the site needs to know which pages and tools work.
 
 For each visit, ${analyticsFacts.tool} records:
 - the page address and title
@@ -157,14 +160,14 @@ For each visit, ${analyticsFacts.tool} records:
 It also counts these actions:
 - signing up, and which form you used
 - signup errors
-- clicks on my social links
+- clicks on the social links
 - using a tool
 
-${analyticsFacts.tool} does not receive anything you type into a form, including your email address. It stores no name or email address with a visit, and I do not link visits to the signup list.
+${analyticsFacts.tool} does not receive anything you type into a form, including your email address. It stores no name or email address with a visit, and ${brand} does not link visits to the signup list.
 
 ${analyticsFacts.identification} Umami Cloud and its providers may keep IP addresses in short-term security logs.
 
-${analyticsFacts.tool} is my processor. It can only use this data to give me these statistics, and I do not share it with anyone for advertising. ${analyticsFacts.location} On the free plan it keeps data for ${analyticsFacts.retention}.
+${analyticsFacts.tool} is ${brand}'s processor. It can only use this data to give ${brand} these statistics, and ${brand} does not share it with anyone for advertising. ${analyticsFacts.location} On the free plan it keeps data for ${analyticsFacts.retention}.
 
 Browsers that send Do Not Track or Global Privacy Control are not counted.
 
@@ -185,14 +188,13 @@ export const copy = {
     titleMark: "asking AI",
     heroPrimary: "Read the latest guide",
     heroSecondary: "Get new guides by email",
-    intro:
-      "I write plain-English guides and build free tools that help small business owners get more from AI.",
+    intro: `${brand} publishes plain-English guides and free tools that help small business owners get more from AI.`,
     latestHeading: "Latest guides",
     moreHeading: "Earlier guides",
     allPostsLink: "All posts",
     emptyHeading: "The first posts are on their way",
     emptyBody:
-      "I'm writing the first guides now. Sign up below and you'll get each one as soon as it's out.",
+      "The first guides are in progress. Sign up below and you'll get each one as soon as it's out.",
     toolsHeading: "Free tools",
     toolsLink: "All tools",
     // TODO(phil): the robots.txt tester is the planned first tool (W2-3). Confirm before launch.
@@ -202,7 +204,7 @@ export const copy = {
 
   band: {
     heading: "Get the next guide in your inbox",
-    body: "One email when something new is ready. Free tools and plain-English guides, nothing else.",
+    body: "",
   },
 
   blog: {
@@ -229,7 +231,7 @@ export const copy = {
     description:
       "Free tools that each do one job for your small business website. They run in your browser and need no sign-up.",
     heading: "Free tools",
-    intro: "Each tool does one job and runs in your browser. You don't need to sign up to use them.",
+    intro: `${brand}\'s goal is to give you as a small business owner the knowledge, and tools to use AI in an effective and authentic way. Check out some of the stuff that has been build to make that happen.`,
     comingHeading: "Coming next",
     listHeading: "The tools so far",
   },
@@ -240,12 +242,12 @@ export const copy = {
     heading: "About this site",
     body: `${brand} helps small businesses use AI to get found online and save time.
 
-I think AI is a useful tool for getting things done faster. Most people do not know how to get the result they need from it. The tools and guides here try to close that gap.
+AI helps small businesses get things done faster. Most people do not know how to get the result they need from it. The tools and guides here try to close that gap.
 
 Everything is free. There are no subscriptions and no affiliate links. The site is new, and the first tools are still being built.`,
     // TODO(phil): add one or two true lines on your background and why you are building this. Nothing is invented here.
     authorBio:
-      "Phil runs the site and writes everything on it. [TODO(phil): add one or two lines on your background and why you are building this.]",
+      `AI is still relatively new and it's changing faster than anything we've seen before. This means that business often have very little idea on how best to use it successfully. I'm hoping that ${brand} can help these businesses by giving them straight forward guidance and simple to use free tools to get the most out of AI.`,
   },
 
   privacy: {
@@ -311,18 +313,17 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
      * Names who is asking, what they get, and how to leave. Change this and you
      * must bump `consentVersion`.
      */
-    consent: `I agree to get emails from Phil at ${brand} when a new tool or guide is ready. I can unsubscribe at any time.`,
+    consent: `I agree to get emails from ${brand} when a new tool or guide is ready.`,
     privacyLinkText: "Privacy notice",
     /** Sent to the provider as the tag `consent-v2026-11` (architecture D-008). */
     consentVersion: "consent-v2026-11",
     /** Double opt-in is on and confirmed working with Kit. */
-    success:
-      "Check your inbox. I have sent an email to confirm your address. Click the link in it to finish signing up. If you do not see it in a few minutes, check your spam folder.",
+    success: `Check your inbox. ${brand} has sent an email to confirm your address. Click the link in it to finish signing up. If you do not see it in a few minutes, check your spam folder.`,
     errors: {
       invalid_email: "That email address does not look right. Check it and try again.",
       consent_required: "Tick the box to agree before you subscribe.",
       rate_limited: "Too many tries. Wait a few minutes and try again.",
-      provider_unavailable: "Something went wrong on our side. Try again in a moment.",
+      provider_unavailable: "Something went wrong. Try again in a moment.",
       network: "Could not reach the server. Check your connection and try again.",
     },
   },
