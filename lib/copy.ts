@@ -47,8 +47,8 @@
  * The section says Umami stores visit data in the EU. That holds only if Phil
  * picks the EU region at Umami signup. The region cannot be changed afterwards.
  * Say "pseudonymous" if needed. Never call the visitor code "anonymous".
- * For Phil to confirm: the section names "legitimate interests" as the UK GDPR
- * basis for counting visits. That is my reading, and Phil should confirm it.
+ * The section names "legitimate interests" as the UK GDPR basis for counting
+ * visits. Phil confirmed this on 18 Nov 2026.
  * Opt-out storage: the choice lives in this browser only (Umami's disable flag).
  * The `optOut` copy and the last paragraph of the section say so. Keep them true
  * if Yuki changes how it is stored.
@@ -260,8 +260,7 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
      * `heading` is the control's heading. `stopCounting` and `countAgain` are the
      * button labels (the button shows the action that is available now).
      * `confirmStopped` and `confirmCounting` appear after a click, in an
-     * aria-live region. `browserNote` is always visible. `footerLink` is the
-     * sitewide footer link text, pointing to /privacy#opt-out.
+     * aria-live region. `browserNote` is always visible.
      */
     optOut: {
       heading: "Opt out of visit counting",
@@ -272,7 +271,6 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
       confirmCounting: "Visits from this browser are counted again.",
       browserNote:
         "Your choice is saved in this browser only. Repeat it on each browser and device you use. Clearing your site data in this browser removes it.",
-      footerLink: "Analytics opt-out",
     },
   },
 
@@ -297,9 +295,7 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
   },
 
   footer: {
-    tagline: "I write plain-English guides and build free tools to help small business owners get more from AI.",
-    // Reads "Built by Phil". TODO(phil): add a surname in lib/site.ts if you want it shown.
-    builtBy: "Built by",
+    privacy: "Privacy policy",
   },
 
   toolShell: {

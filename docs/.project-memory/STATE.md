@@ -35,10 +35,10 @@ Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance chec
 
 ## Blockers / flags
 - Three draft sample posts in content/posts/ need Phil's approval or replacement before live.
-- lib/social.ts: X set (x.com/TheAIBizKit); TikTok and YouTube URLs null.
+- lib/social.ts: X (x.com/TheAIBizKit) and TikTok (@the.ai.business.ki, added 2026-11-18; auto-generated handle cut at the length limit, Phil plans to rename it, then update the URL here) set; YouTube URL null.
 - Security audit open items: F2 live X-Real-IP spoof and shared-bucket tests (Phil + Quinn; unblocked, site is deployed); F3, F4, F5 (Tomas, deferred by Phil); F6 CSP (Yuki; unblocked, Umami ID is set: script-src cloud.umami.is, connect-src gateway.umami.is). Hardening: server-only on lib/kit.ts, shadcn to devDependencies, COOP header, SSRF pass for the robots.txt tester.
 - Phil to-dos, Umami: dashboard steps DONE. Still open from earlier: IP filter, no Google Ads link, no public share, save Umami DPA and subprocessor PDFs. The signup event counts form submissions; Kit double opt-in makes confirmed subscribers fewer.
-- Phil to-dos, privacy: confirm "legitimate interests" basis; fill name and contact on /privacy; check Kit DPA lines; review older privacy sentences for writing rule 4.
+- Phil to-dos, privacy: "legitimate interests" basis CONFIRMED 2026-11-18; fill name and contact on /privacy; check Kit DPA lines; review older privacy sentences for writing rule 4.
 - Phil to-dos, Kit: confirm form double opt-in; test subscriber should show unconfirmed.
 - Newsletter meta description has TODO(phil): weekly cap line. Post og:image alt generic (low priority). No DESIGN.md (suggest /impeccable document).
 - keyword-shortlist-and-content-plan.xlsx at repo root, git-ignored (Phil's choice); stays local only.
@@ -52,6 +52,6 @@ Current ICO/PECR guidance; Umami Hobby limits and EU region on the live dashboar
 2. Search Console DONE 2026-11-18. Next: Priya writes Bing Webmaster Tools and IndexNow steps.
 3. Yuki: F6 CSP. Phil + Quinn: F2 live spoof tests.
 4. Merge feat/s00-1-content-first to main (Phil's call on timing); Eleanor and Quinn passes; Lighthouse; Rich Results Test.
-5. Before launch: approve or replace the three draft posts; fill /privacy name and contact; set TikTok and YouTube URLs in lib/social.ts; resolve newsletter meta TODO(phil).
+5. Before launch: approve or replace the three draft posts; fill /privacy name and contact; set the YouTube URL in lib/social.ts; resolve newsletter meta TODO(phil).
 6. Priya: week-1 audience tracker row (handoff item 11).
 7. Next build: K03-T1 robots.txt tester (W2-3), with an SSRF pass.

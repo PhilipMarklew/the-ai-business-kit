@@ -1,70 +1,58 @@
 import Link from "next/link";
+import type { Icon } from "@phosphor-icons/react";
+import { TiktokLogo, XLogo, YoutubeLogo } from "@phosphor-icons/react/ssr";
 import { FollowLink } from "@/components/tracked-link";
-import { Wordmark } from "@/components/site-header";
 import { copy } from "@/lib/copy";
-import { authorDisplayName } from "@/lib/site";
+import { site } from "@/lib/site";
 import { liveSocial } from "@/lib/social";
-import { topics } from "@/lib/topics";
 
-const siteLinks = [
-  { href: "/blog", label: "All posts" },
-  { href: "/tools", label: "Free tools" },
-  { href: "/newsletter", label: "Newsletter" },
-  { href: "/about", label: "About" },
-  { href: "/privacy", label: "Privacy" },
-];
+const socialIcons: Record<string, Icon> = {
+  TikTok: TiktokLogo,
+  YouTube: YoutubeLogo,
+  X: XLogo,
+};
+
+// Module scope so it is fixed at build time (Cache Components forbids
+// new Date() during render). Each deploy refreshes it.
+const year = new Date().getFullYear();
 
 /**
- * Two short rows instead of a column grid: a small site does not need a
- * footer the size of a corporate one. Row one: wordmark and tagline. Row two:
- * every link inline, topics first, then site pages, then social.
+ * One centred stack below a key line: social icons, then copyright and the
+ * privacy link. Only live profiles show (see lib/social.ts).
  */
 export function SiteFooter() {
-  const links = [
-    ...topics.map((t) => ({ href: `/topics/${t.slug}`, label: t.name, external: false })),
-    ...siteLinks.map((l) => ({ ...l, external: false })),
-    ...liveSocial.map((s) => ({ href: s.url, label: s.name, external: true })),
-  ];
   return (
     <footer className="mt-24 border-t border-line text-sm text-muted md:mt-32">
-      <div className="mx-auto flex w-full max-w-page flex-col gap-6 px-5 py-10 sm:px-8">
-        <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between md:gap-10">
-          <Link href="/" className="text-base text-ink hover:text-ink">
-            <Wordmark />
-          </Link>
-          <p className="max-w-[60ch] md:text-right">{copy.footer.tagline}</p>
-        </div>
-        <nav aria-label="Footer" className="border-t border-line pt-6">
-          <ul className="flex flex-wrap gap-x-6 gap-y-3">
-            {links.map((l) => (
-              <li key={l.href}>
-                {l.external ? (
+      <div className="mx-auto flex w-full max-w-page flex-col items-center gap-5 px-5 py-10 text-center sm:px-8">
+        {liveSocial.length > 0 && (
+          <ul className="flex items-center gap-2">
+            {liveSocial.map((s) => {
+              const SocialIcon = socialIcons[s.name];
+              return (
+                <li key={s.url}>
                   <FollowLink
-                    network={l.label}
+                    network={s.name}
                     placement="footer"
-                    href={l.href}
+                    href={s.url}
                     rel="me noopener"
-                    className="text-muted hover:text-ink"
+                    aria-label={s.name}
+                    className="flex size-10 items-center justify-center rounded-full text-muted transition-colors hover:text-ink"
                   >
-                    {l.label}
+                    {SocialIcon ? <SocialIcon size={22} aria-hidden /> : s.name}
                   </FollowLink>
-                ) : (
-                  <Link href={l.href} className="text-muted hover:text-ink">
-                    {l.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-            <li>
-              <Link href="/privacy#opt-out" className="text-muted hover:text-ink">
-                {copy.privacy.optOut.footerLink}
-              </Link>
-            </li>
-            <li className="md:ml-auto">
-              {copy.footer.builtBy} {authorDisplayName}
-            </li>
+                </li>
+              );
+            })}
           </ul>
-        </nav>
+        )}
+        <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+          <span>
+            © {year} {site.name}
+          </span>
+          <Link href="/privacy" className="text-muted hover:text-ink">
+            {copy.footer.privacy}
+          </Link>
+        </p>
       </div>
     </footer>
   );
