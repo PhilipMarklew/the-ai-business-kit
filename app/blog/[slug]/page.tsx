@@ -6,6 +6,7 @@ import { PostMeta, PostRow } from "@/components/post-card";
 import { PostCover } from "@/components/post-cover";
 import { SignupBand } from "@/components/signup-band";
 import { copy } from "@/lib/copy";
+import { articleMetadata } from "@/lib/metadata";
 import { renderMdx } from "@/lib/mdx";
 import { getPost, getRelatedPosts, postStaticParams } from "@/lib/posts";
 import { authorDisplayName } from "@/lib/site";
@@ -21,20 +22,18 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: post.title,
-    description: post.description,
-    // Drafts can be visible on a preview build but must never be indexed.
-    robots: post.draft ? { index: false, follow: false } : undefined,
-    openGraph: {
-      type: "article",
+    ...articleMetadata({
       title: post.title,
+      seoTitle: post.seoTitle,
       description: post.description,
-      url: `/blog/${post.slug}`,
+      seoDescription: post.seoDescription,
+      path: `/blog/${post.slug}`,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       authors: [authorDisplayName],
-    },
-    twitter: { card: "summary_large_image", title: post.title, description: post.description },
+    }),
+    // Drafts can be visible on a preview build but must never be indexed.
+    robots: post.draft ? { index: false, follow: false } : undefined,
   };
 }
 

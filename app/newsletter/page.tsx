@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { FollowLinks } from "@/components/follow-links";
 import { SignupForm } from "@/components/signup-form";
 import { copy } from "@/lib/copy";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: copy.newsletter.title,
   description: copy.newsletter.description,
-};
+  path: "/newsletter",
+});
 
 /** The form is the page. Promise on the left, form on the right from tablet up. */
 export default function NewsletterPage() {

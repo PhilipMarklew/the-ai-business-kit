@@ -92,15 +92,16 @@ export function FeaturedPost({ post, headingLevel = "h2" }: { post: Post; headin
 }
 
 /** Compact horizontal card for lists: small cover, title, one-line summary, meta. */
-export function PostRow({ post }: { post: Post }) {
+export function PostRow({ post, headingLevel = "h3" }: { post: Post; headingLevel?: "h2" | "h3" }) {
+  const Heading = headingLevel;
   return (
     <article className="group relative grid grid-cols-[6.5rem_1fr] items-start gap-4 sm:grid-cols-[9rem_1fr] sm:gap-5">
       <PostCover post={post} className="aspect-square" sizes="144px" />
       <div className="flex min-w-0 flex-col gap-1.5">
         <TopicTag post={post} />
-        <h3 className="text-title font-heading">
+        <Heading className="text-title font-heading">
           <TitleLink post={post} />
-        </h3>
+        </Heading>
         <p className="line-clamp-2 text-muted max-sm:hidden">{post.description}</p>
         <PostMeta post={post} />
       </div>
@@ -108,12 +109,13 @@ export function PostRow({ post }: { post: Post }) {
   );
 }
 
-export function PostList({ posts }: { posts: Post[] }) {
+/** `headingLevel` keeps the outline in order: h2 when the list sits straight under the page h1. */
+export function PostList({ posts, headingLevel }: { posts: Post[]; headingLevel?: "h2" | "h3" }) {
   return (
     <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2">
       {posts.map((p) => (
         <li key={p.slug}>
-          <PostRow post={p} />
+          <PostRow post={p} headingLevel={headingLevel} />
         </li>
       ))}
     </ul>

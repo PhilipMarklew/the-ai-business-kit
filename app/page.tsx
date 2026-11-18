@@ -1,11 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Marker } from "@/components/marker";
 import { LeadStory, PostHeadline, PostList } from "@/components/post-card";
+import { WebSiteJsonLd } from "@/components/organization-json-ld";
 import { SignupAside } from "@/components/signup-band";
 import { ToolsStrip } from "@/components/tools-strip";
 import { copy } from "@/lib/copy";
+import { pageMetadata } from "@/lib/metadata";
 import { getPosts } from "@/lib/posts";
+import { site } from "@/lib/site";
 import { topics } from "@/lib/topics";
+
+export const metadata: Metadata = pageMetadata({
+  title: site.name,
+  absoluteTitle: copy.homeMetaTitle,
+  description: copy.siteDescription,
+  path: "/",
+});
 
 const SIDE_COUNT = 3;
 const MORE_COUNT = 6;
@@ -103,6 +114,7 @@ export default function HomePage() {
           <ToolsStrip />
         </div>
       </div>
+      <WebSiteJsonLd />
     </>
   );
 }

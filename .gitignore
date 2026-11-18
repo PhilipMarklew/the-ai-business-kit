@@ -45,3 +45,6 @@ next-env.d.ts
 
 # browser check screenshots
 /.playwright-mcp/
+
+# Keyword plan workbook (Phil keeps it local)
+keyword-shortlist-and-content-plan.xlsx

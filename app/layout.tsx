@@ -4,7 +4,8 @@ import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { copy } from "@/lib/copy";
-import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
+import { authorDisplayName, site } from "@/lib/site";
 import "./globals.css";
 
 // Self-hosted at build time by next/font, with a size-matched fallback so the
@@ -24,21 +25,15 @@ const headingFont = Literata({
   variable: "--font-heading-face",
 });
 
+// Defaults for any page that sets no metadata of its own. Pages call
+// pageMetadata() (lib/metadata.ts) so each gets its own canonical and share tags.
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  ...pageMetadata({ title: site.name, description: copy.siteDescription, path: "./" }),
   title: { default: site.name, template: `%s | ${site.name}` },
-  description: copy.siteDescription,
-  // Resolved per page against metadataBase, so every page gets its own canonical.
-  alternates: { canonical: "./" },
-  openGraph: {
-    type: "website",
-    siteName: site.name,
-    locale: "en_GB",
-    title: site.name,
-    description: copy.siteDescription,
-    url: "./",
-  },
-  twitter: { card: "summary", title: site.name, description: copy.siteDescription },
+  applicationName: site.name,
+  authors: [{ name: authorDisplayName, url: "/about" }],
+  formatDetection: { telephone: false, address: false, email: false },
 };
 
 export const viewport: Viewport = {

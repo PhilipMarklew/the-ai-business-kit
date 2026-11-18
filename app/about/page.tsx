@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { PageContainer } from "@/components/page-container";
 import { copy } from "@/lib/copy";
+import { pageMetadata } from "@/lib/metadata";
 import { author, authorDisplayName } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: copy.about.title,
   description: copy.about.description,
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

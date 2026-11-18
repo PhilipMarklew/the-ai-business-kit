@@ -11,6 +11,8 @@ import { isTopicSlug, type TopicSlug } from "@/lib/topics";
  *   ---
  *   title: "..."
  *   description: "..."      # one or two sentences, used for cards and meta
+ *   seoTitle: "..."         # optional; shorter <title> (max 43 chars, the site name is added)
+ *   seoDescription: "..."   # optional; meta description when `description` is over 155 chars
  *   topic: get-found        # get-found | get-trusted | run-better
  *   date: 2026-11-17        # publish date, YYYY-MM-DD
  *   updated: 2026-11-20     # optional
@@ -34,6 +36,10 @@ export type Post = {
   slug: string;
   title: string;
   description: string;
+  /** Shorter <title> text, when the headline is too long for search results. */
+  seoTitle: string | null;
+  /** Meta description, when `description` is too long for search results. */
+  seoDescription: string | null;
   topic: TopicSlug;
   date: string;
   updated: string | null;
@@ -81,6 +87,11 @@ function readString(file: string, data: Record<string, unknown>, field: string):
   return value.trim();
 }
 
+function readOptionalString(file: string, data: Record<string, unknown>, field: string): string | null {
+  if (data[field] == null) return null;
+  return readString(file, data, field);
+}
+
 /** h2 headings from the markdown source, slugged the same way rehype-slug does it. */
 function extractHeadings(body: string): Heading[] {
   const slugger = new GithubSlugger();
@@ -118,6 +129,8 @@ function loadPost(file: string): Post {
     slug,
     title: readString(file, data, "title"),
     description: readString(file, data, "description"),
+    seoTitle: readOptionalString(file, data, "seoTitle"),
+    seoDescription: readOptionalString(file, data, "seoDescription"),
     topic,
     date: readDate(file, data.date, "date"),
     updated: data.updated == null ? null : readDate(file, data.updated, "updated"),

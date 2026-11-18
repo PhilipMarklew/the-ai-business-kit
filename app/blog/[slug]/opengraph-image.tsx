@@ -1,30 +1,19 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { ImageResponse } from "next/og";
+import { COLOURS, SHARE_SIZE, shareFonts } from "@/lib/og";
 import { getPost, postStaticParams } from "@/lib/posts";
 import { site } from "@/lib/site";
 import { getTopic } from "@/lib/topics";
 
 /**
  * Share image for each post (the preview on X, WhatsApp, iMessage and so on).
- * Built at build time in the dark brand look. Colours are the dark-theme
- * tokens from app/globals.css as hex, because the image renderer cannot read
- * CSS variables.
+ * Built at build time in the dark brand look (colours and fonts: lib/og.tsx).
  */
 export const alt = "Post title on The AI Business Kit";
-export const size = { width: 1200, height: 630 };
+export const size = SHARE_SIZE;
 export const contentType = "image/png";
 
 export function generateStaticParams() {
   return postStaticParams();
-}
-
-const COLOURS = { canvas: "#100c0c", ink: "#f6f2f2", muted: "#b4acaa", accent: "#f9786a", line: "#352e2d" };
-
-function font(weight: 600 | 800) {
-  return readFile(
-    path.join(process.cwd(), "node_modules/@fontsource/manrope/files", `manrope-latin-${weight}-normal.woff`),
-  );
 }
 
 export default async function OpengraphImage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,7 +21,6 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
   const post = getPost(slug);
   const title = post?.title ?? site.name;
   const topic = post ? getTopic(post.topic)?.name : undefined;
-  const [semibold, extrabold] = await Promise.all([font(600), font(800)]);
 
   return new ImageResponse(
     (
@@ -62,12 +50,6 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
         <div style={{ display: "flex", height: 8, width: 160, background: COLOURS.accent, borderRadius: 4 }} />
       </div>
     ),
-    {
-      ...size,
-      fonts: [
-        { name: "Manrope", data: semibold, weight: 600, style: "normal" },
-        { name: "Manrope", data: extrabold, weight: 800, style: "normal" },
-      ],
-    },
+    { ...SHARE_SIZE, fonts: await shareFonts() },
   );
 }

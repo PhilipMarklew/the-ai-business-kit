@@ -113,15 +113,19 @@ export const copy = {
   // Used for meta description, Open Graph and JSON-LD.
   siteDescription:
     "Plain-English guides and free tools that show small business owners how to get useful results from AI. Written and built by Phil.",
+  /** Full <title> for the home page. Other pages get " | <site name>" added. */
+  homeMetaTitle: `${brand}: Free AI Guides for Small Business`,
+  /** Text on the default share image, and its alt text. */
+  shareStrapline: "Plain-English AI guides and free tools for small business",
 
   home: {
-    title: "ChatGPT gets useful once it knows your business",
+    title: "Your customers are probably asking AI before Google.",
     /** The words in `title` that get the hand-drawn marker. Must appear in `title` exactly. */
-    titleMark: "your business",
+    titleMark: "asking AI",
     heroPrimary: "Read the latest guide",
     heroSecondary: "Get new guides by email",
     intro:
-      "Many owners try ChatGPT once and give up after a bland answer. I write guides and build free tools that show you what to ask for and what to do with the answer.",
+      "I write plain-English guides and build free tools that help small business owners get more from AI.",
     latestHeading: "Latest guides",
     moreHeading: "Earlier guides",
     allPostsLink: "All posts",
@@ -142,7 +146,8 @@ export const copy = {
 
   blog: {
     title: "Blog",
-    description: "Plain-English guides on getting found, earning trust and running a small business better with AI.",
+    description:
+      "Short, practical guides that help small business owners get found online and get more done with AI. Pick a topic or read them all.",
     heading: "The blog",
     intro: "Short, practical guides for small business owners. Pick a topic or read the lot.",
     empty: "Nothing here yet. The first guides are being written now.",
@@ -160,18 +165,19 @@ export const copy = {
 
   tools: {
     title: "Free tools",
-    description: "Free tools that each do one job for your small business website. No sign-up needed to use them.",
+    description:
+      "Free tools that each do one job for your small business website. They run in your browser and need no sign-up.",
     heading: "Free tools",
-    intro: "Each tool does one job, runs in your browser and costs nothing. No sign-up needed to use them.",
+    intro: "Each tool does one job and runs in your browser. You don't need to sign up to use them.",
     comingHeading: "Coming next",
     listHeading: "The tools so far",
   },
 
   about: {
     title: "About",
-    description: "Who runs this site and why.",
+    description: `Phil runs ${brand}: plain-English AI guides and free tools for small businesses. No subscriptions and no affiliate links.`,
     heading: "About this site",
-    body: `${brand} helps small businesses get found online, earn trust and run better, using AI where it helps.
+    body: `${brand} helps small businesses use AI to get found online and save time.
 
 I think AI is a useful tool for getting things done faster. Most people do not know how to get the result they need from it. The tools and guides here try to close that gap.
 
@@ -190,7 +196,9 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
 
   newsletter: {
     title: "Newsletter",
-    description: "Free tools and plain guides for small businesses, by email, when each one is ready.",
+    // TODO(phil): once the weekly cap is confirmed, end with "One email a week at most, and you can leave any time."
+    description:
+      "Get free tools and plain-English guides for small businesses by email when each one is ready. Every email has an unsubscribe link.",
     heading: "Get the first tool by email",
     points: [
       "What arrives: free tools and plain-English guides for small businesses, as each one is ready.",

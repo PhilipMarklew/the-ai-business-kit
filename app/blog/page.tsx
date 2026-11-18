@@ -3,12 +3,14 @@ import { ListingHeader } from "@/components/listing-header";
 import { FeaturedPost, PostList } from "@/components/post-card";
 import { SignupBand } from "@/components/signup-band";
 import { copy } from "@/lib/copy";
+import { pageMetadata } from "@/lib/metadata";
 import { getPosts } from "@/lib/posts";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: copy.blog.title,
   description: copy.blog.description,
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const [featured, ...rest] = getPosts();

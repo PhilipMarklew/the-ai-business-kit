@@ -1,31 +1,42 @@
+import { breadcrumbs, JsonLd } from "@/components/json-ld";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/components/organization-json-ld";
 import type { Post } from "@/lib/posts";
-import { absoluteUrl, authorDisplayName, site } from "@/lib/site";
+import { absoluteUrl, authorDisplayName } from "@/lib/site";
+import { getTopic } from "@/lib/topics";
 
 /**
- * BlogPosting structured data. Describes the page for search and AI tools;
- * it is clarity, not a ranking promise. Values come from the same frontmatter
- * the page renders, so the two cannot disagree.
+ * BlogPosting and BreadcrumbList structured data for a post. Values come from
+ * the same frontmatter the page renders, so the two cannot disagree.
  */
 export function ArticleJsonLd({ post }: { post: Post }) {
   const url = absoluteUrl(`/blog/${post.slug}`);
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.updated ?? post.date,
-    mainEntityOfPage: url,
-    url,
-    image: absoluteUrl(`/blog/${post.slug}/opengraph-image`),
-    author: { "@type": "Person", name: authorDisplayName, url: absoluteUrl("/about") },
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
-  };
+  const topic = getTopic(post.topic);
   return (
-    <script
-      type="application/ld+json"
-      // JSON.stringify output with "<" escaped cannot break out of the script tag.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
-    />
+    <>
+      <JsonLd
+        data={{
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.description,
+          datePublished: post.date,
+          dateModified: post.updated ?? post.date,
+          inLanguage: "en-GB",
+          mainEntityOfPage: url,
+          url,
+          image: absoluteUrl(`/blog/${post.slug}/opengraph-image`),
+          ...(topic && { articleSection: topic.name }),
+          author: { "@type": "Person", name: authorDisplayName, url: absoluteUrl("/about") },
+          publisher: { "@id": ORGANIZATION_ID },
+          isPartOf: { "@id": WEBSITE_ID },
+        }}
+      />
+      <JsonLd
+        data={breadcrumbs([
+          ["Home", absoluteUrl("/")],
+          ...(topic ? [[topic.name, absoluteUrl(`/topics/${topic.slug}`)] as [string, string]] : []),
+          [post.title, url],
+        ])}
+      />
+    </>
   );
 }

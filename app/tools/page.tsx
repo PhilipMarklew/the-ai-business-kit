@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ToolsStrip } from "@/components/tools-strip";
 import { copy } from "@/lib/copy";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: copy.tools.title,
   description: copy.tools.description,
-};
+  path: "/tools",
+});
 
 /**
  * /tools index. Rendered inside app/tools/layout.tsx, whose heading slot is

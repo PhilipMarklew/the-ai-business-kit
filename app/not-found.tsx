@@ -5,8 +5,11 @@ import { copy } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: copy.notFound.title,
+  // No canonical or share tags for a page that does not exist. Next adds the
+  // noindex tag itself on every 404.
   alternates: { canonical: null },
-  robots: { index: false },
+  openGraph: null,
+  twitter: null,
 };
 
 const links = [
