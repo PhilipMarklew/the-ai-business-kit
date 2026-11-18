@@ -6,7 +6,7 @@
 - Phil excludes own visits with the /privacy opt-out button, per browser; no ?notrack link
 - specs/umami-dashboard-setup.md: Phil completed the dashboard steps 2026-11-18
 - Cloudflare SSL/TLS mode confirmed Full by Phil 2026-11-18
-- D-015: robots.txt in app/robots.ts only; AI training crawlers blocked. Code changed, not deployed. Phil to switch off Cloudflare managed robots.txt; then recheck live robots.txt and that the edge 403s for training bots remain
+- D-015: robots.txt in app/robots.ts only; AI training crawlers blocked. Deployed 2026-11-18 (249d42d). Cloudflare Bot Preference Sync off, Training policy Block. Verified: live robots.txt is ours only; training bots 403, search and agent bots 200
 - DECISIONS: added D-014. Handoff and .env.example updated for the domain
 - Railway serves feat/s00-1-content-first (origin tip 431c8aa); main is not merged
 
