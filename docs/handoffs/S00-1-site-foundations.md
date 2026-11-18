@@ -70,7 +70,7 @@ Items 9, 10 and 12 need Phil's logins. The team writes exact click-by-click step
 - [ ] Organization schema validates and matches the About page
 - [ ] Test signup reaches the provider, consent wording is shown at the point of signup, and the confirmation or welcome email arrives
 - [ ] Form rejects bad input and survives a rapid-fire submit test
-- [ ] Search Console shows the property verified and the sitemap submitted
+- [x] Search Console shows the property verified and the sitemap submitted (Phil, 2026-11-18)
 - [ ] Umami receives a real pageview from the live domain (was GA4, see D-013). Tracker behaviour verified in a browser 2026-11-18 with sends intercepted; real count not yet seen
 - [ ] Three social accounts exist, each with the hub link in bio
 - [ ] Week-1 row is in the audience tracker

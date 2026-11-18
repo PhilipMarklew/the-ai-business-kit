@@ -24,7 +24,7 @@ Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance chec
 5b. Tomas /api/subscribe: DONE 2026-11-18 (Kit v4, committed). Phil's real test signup works; Kit API works on free plan. Rate-limit per-IP check skipped when X-Real-IP missing.
 5d. Yuki analytics + Margot privacy copy: DONE 2026-11-18, committed.
 6. Viktor audit DONE (specs/security-audit-S00-1.md). Eleanor, Quinn: NOT STARTED
-7. Phil: Umami dashboard setup DONE 2026-11-18. Search Console and social accounts NOT STARTED
+7. Phil: Umami dashboard setup DONE 2026-11-18. Search Console DONE 2026-11-18 (verified, sitemap submitted, per Phil). Social accounts NOT STARTED
 8. Priya: week-1 audience tracker row (item 11). NOT STARTED
 5c. Yuki SEO hardening: DONE 2026-11-17, committed 2026-11-18. Margot meta copy applied (specs/seo-meta-copy.md).
 
@@ -49,7 +49,7 @@ Current ICO/PECR guidance; Umami Hobby limits and EU region on the live dashboar
 
 ## Next steps
 1. Phil: the privacy and Kit to-dos above. Check a real pageview shows in Umami (handoff check still open).
-2. Phil: do the Search Console steps in specs/search-console-setup.md (steps written 2026-11-18; Domain property, Cloudflare DNS TXT, submit sitemap). Then Priya writes Bing and IndexNow steps.
+2. Search Console DONE 2026-11-18. Next: Priya writes Bing Webmaster Tools and IndexNow steps.
 3. Yuki: F6 CSP. Phil + Quinn: F2 live spoof tests.
 4. Merge feat/s00-1-content-first to main (Phil's call on timing); Eleanor and Quinn passes; Lighthouse; Rich Results Test.
 5. Before launch: approve or replace the three draft posts; fill /privacy name and contact; set TikTok and YouTube URLs in lib/social.ts; resolve newsletter meta TODO(phil).
