@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo-mark";
 import { site } from "@/lib/site";
 
 const links = [
@@ -7,11 +8,11 @@ const links = [
   { href: "/about", label: "About", hideOnPhone: true },
 ];
 
-/** Wordmark: the site name, with a coral block as the only mark. */
+/** Wordmark: the logo mark, then the site name. */
 export function Wordmark() {
   return (
-    <span className="inline-flex items-center gap-2 whitespace-nowrap font-extrabold tracking-tight max-sm:text-[0.95rem] sm:gap-2.5">
-      <span aria-hidden="true" className="size-3 shrink-0 rotate-45 rounded-[0.2rem] bg-accent sm:size-3.5" />
+    <span className="inline-flex items-center gap-1.5 whitespace-nowrap font-extrabold tracking-tight max-sm:text-[0.95rem] sm:gap-2">
+      <LogoMark className="size-6 shrink-0 sm:size-7" />
       <span>{site.name}</span>
     </span>
   );

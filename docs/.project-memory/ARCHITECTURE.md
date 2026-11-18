@@ -3,7 +3,7 @@ Stack: Next.js (app router), Tailwind v4, shadcn, pnpm. Host: Railway (D-005). C
 Product and brand context: PRODUCT.md. Original architecture spec: docs/specs/S00-1-architecture.md.
 
 ## Layout
-- app/: api/subscribe/route.ts (POST, body byte cap via readCapped), page.tsx, about, privacy, newsletter, blog (+ /blog/<slug>), topics (/topics/<slug>), tools (index + /tools/<slug>), robots.ts, sitemap.ts, manifest.ts, feed.xml/route.ts (RSS, published only), icon.svg, apple-icon.tsx, favicon.ico/route.ts, logo.png/route.ts, opengraph-image.tsx (default share image), not-found.tsx, globals.css (theme tokens)
+- app/: api/subscribe/route.ts (POST, body byte cap via readCapped), page.tsx, about, privacy, newsletter, blog (+ /blog/<slug>), topics (/topics/<slug>), tools (index + /tools/<slug>), robots.ts, sitemap.ts, manifest.ts, feed.xml/route.ts (RSS, published only), icon.svg, apple-icon.png, favicon.ico (static logo files; source artwork in brand/; manifest icons in public/, icon-512.png is the JSON-LD logo), opengraph-image.tsx (default share image), not-found.tsx, globals.css (theme tokens)
 - components/: analytics-script/umami-tracker/analytics-opt-out/tracked-link, site-header/footer, post-card/cover, listing-header, topic-nav, tools-strip, signup-form/band, follow-links, json-ld (shared JsonLd + breadcrumbs), organization-json-ld, article-json-ld, tool-shell-heading, ui/ (shadcn)
 - content/posts/: MDX posts. Frontmatter: title, description, topic, date, updated, draft, optional seoTitle/seoDescription.
 - proxy.ts (root): returns real 404 status for unknown /blog/<slug>, /blog/<slug>/opengraph-image, /topics/<slug>.

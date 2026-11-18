@@ -19,7 +19,7 @@ export function OrganizationJsonLd() {
         "@id": ORGANIZATION_ID,
         name: site.name,
         url: absoluteUrl("/"),
-        logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 512, height: 512 },
+        logo: { "@type": "ImageObject", url: absoluteUrl("/icon-512.png"), width: 512, height: 512 },
         description: copy.siteDescription,
         founder: { "@type": "Person", name: authorDisplayName, url: absoluteUrl("/about") },
         // Filled from lib/social.ts as each account goes live.

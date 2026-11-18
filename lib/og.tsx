@@ -1,9 +1,10 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { ImageResponse } from "next/og";
+import { MARK_OUTLINE_PATH, MARK_STAR_PATH } from "@/components/logo-mark";
 
 /**
- * Shared pieces for generated images: share cards, icons and the logo.
+ * Shared pieces for generated share images. The favicon, app icons and
+ * the search-data logo are static files from Phil's artwork (see app/ and public/).
  * Colours are the dark-theme tokens from app/globals.css as hex, because the
  * image renderer cannot read CSS variables.
  */
@@ -28,32 +29,10 @@ export async function shareFonts() {
   ];
 }
 
-/** The site mark: a coral diamond on the dark canvas, as a square PNG. */
-export function markImage(size: number): ImageResponse {
-  const diamond = Math.round(size * 0.42);
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: COLOURS.canvas,
-        }}
-      >
-        <div
-          style={{
-            width: diamond,
-            height: diamond,
-            background: COLOURS.accent,
-            borderRadius: Math.round(diamond * 0.16),
-            transform: "rotate(45deg)",
-          }}
-        />
-      </div>
-    ),
-    { width: size, height: size },
-  );
-}
+/**
+ * The logo mark as an <img> source for share images, in the dark-theme
+ * colours. The image renderer draws SVG through <img>, so this is a data URI.
+ */
+export const MARK_SRC = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="${MARK_STAR_PATH}" fill="${COLOURS.accent}"/><path d="${MARK_OUTLINE_PATH}" fill="${COLOURS.ink}"/></svg>`,
+)}`;

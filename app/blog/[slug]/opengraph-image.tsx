@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { COLOURS, SHARE_SIZE, shareFonts } from "@/lib/og";
+import { COLOURS, MARK_SRC, SHARE_SIZE, shareFonts } from "@/lib/og";
 import { getPost, postStaticParams } from "@/lib/posts";
 import { site } from "@/lib/site";
 import { getTopic } from "@/lib/topics";
@@ -37,8 +37,8 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
           fontFamily: "Manrope",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 30, fontWeight: 800 }}>
-          <div style={{ width: 24, height: 24, background: COLOURS.accent, borderRadius: 4, transform: "rotate(45deg)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 30, fontWeight: 800 }}>
+          <img src={MARK_SRC} width={40} height={40} alt="" />
           {site.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

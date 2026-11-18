@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { copy } from "@/lib/copy";
-import { COLOURS, SHARE_SIZE, shareFonts } from "@/lib/og";
+import { COLOURS, MARK_SRC, SHARE_SIZE, shareFonts } from "@/lib/og";
 import { site } from "@/lib/site";
 
 /**
@@ -28,7 +28,7 @@ export default async function OpengraphImage() {
           fontFamily: "Manrope",
         }}
       >
-        <div style={{ width: 40, height: 40, background: COLOURS.accent, borderRadius: 6, transform: "rotate(45deg)", marginLeft: 8 }} />
+        <img src={MARK_SRC} width={72} height={72} alt="" />
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ fontSize: 96, fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.035em" }}>{site.name}</div>
           <div style={{ fontSize: 40, fontWeight: 600, lineHeight: 1.25, color: COLOURS.muted, maxWidth: 760 }}>
