@@ -66,3 +66,15 @@ Why: Phil wants a full funnel with no consent banner; cookieless statistical use
 Rejected: GA4 (cookies, consent banner); PostHog (cookie-first default, heavier script, more config risk).
 Shape: lib/analytics.ts is the only Umami-aware file; events signup, signup_error, follow_click, tool_run; GPC/DNT respected; opt-out at /privacy#opt-out. Handoff item 10 (GA4) superseded.
 Owner: Phil. Built by Yuki, copy by Margot. Affects: Viktor (CSP hosts), Phil (Umami setup).
+
+## D-014 | 2026-11-18 | Domain theaibusinesskit.com; apex canonical, Cloudflare handles www
+Why: one canonical host for SEO. Cloudflare proxies DNS: CNAME www -> apex plus a Single Redirect (https://www.* -> https://${1}, 301, query kept); Always Use HTTPS on. www is not added in Railway.
+Verified 2026-11-18: https www -> one 301 to apex; http www -> 2 hops; http apex -> 1 hop. SSL/TLS mode Full or Full (strict) told to Phil, not verified.
+Owner: Phil. Affects: Yuki (SITE_URL, canonical, sitemap), Viktor (CSP, headers).
+
+## D-015 | 2026-11-18 | robots.txt lives in app/robots.ts only; block AI training crawlers
+Why: Cloudflare's managed robots.txt added about 30 disallows that were not in the repo. The site is about AI visibility, and the K03-T1 robots.txt tester will be tried on this site first, so every rule must be in code with a reason.
+Shape: Cloudflare managed robots.txt off (Phil). app/robots.ts allows Googlebot, Bingbot, OAI-SearchBot and PerplexityBot; disallows GPTBot, ClaudeBot, CCBot, Google-Extended and Applebot-Extended (tokens checked on vendor pages 18 Nov 2026). Search and user-fetch agents (ChatGPT-User, Claude-SearchBot, Claude-User) stay allowed.
+Edge: Cloudflare also returns 403 to some training crawlers at the edge (seen with GPTBot, ClaudeBot, CCBot and Bytespider user agents, 18 Nov 2026). Kept on, as it matches this decision. Search agents get 200.
+Note: Google-Extended also covers Gemini grounding, so Gemini apps may not use these pages in answers. Google says it does not affect inclusion or ranking in Google Search.
+Owner: Phil. Affects: Yuki (robots.ts), K03-T1 tester (use this site as a test case).

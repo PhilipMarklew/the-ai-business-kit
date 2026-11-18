@@ -43,7 +43,7 @@ Items 9, 10 and 12 need Phil's logins. The team writes exact click-by-click step
 
 | ID | Decision | Status | Who decides |
 |---|---|---|---|
-| D1 | **Hub name and .com domain.** Not chosen or bought yet. Needs a broad name not tied to one tool (about £8-9/yr for a .com) | Open | Phil |
+| D1 | **Hub name and .com domain.** Name chosen (D-009). Domain theaibusinesskit.com bought 2026-11-18 | Done | Phil |
 | D2 | **Email provider.** Not chosen. Marcus checks each candidate's current free limits and compares: free subscriber cap, double opt-in, export, API, UK GDPR terms | Open | Phil, on Marcus's recommendation |
 | D3 | Hosting target | **Decided: Next.js on Phil's existing Railway account.** Vercel Hobby is non-commercial only and was ruled out. Marcus confirms the Railway plan covers this project's traffic and cost, and checks the Railway terms allow it | Phil (done) |
 | D4 | Whether consent records go in Supabase or only in the email provider | Open | Marcus, Astrid recommend. Default: provider only, unless a gap appears |
@@ -63,7 +63,7 @@ Items 9, 10 and 12 need Phil's logins. The team writes exact click-by-click step
 
 ## 6. Acceptance checks (Quinn runs these)
 
-- [ ] Site is live over HTTPS on the real domain
+- [x] Site is live over HTTPS on the real domain (https://theaibusinesskit.com, 200, 2026-11-18)
 - [ ] Home, About, Privacy, Newsletter pages load, mobile layout holds, no layout shift
 - [ ] Lighthouse mobile run recorded (performance, accessibility, SEO). Fix anything under 90 or log why not
 - [ ] `/sitemap.xml` and `/robots.txt` return correctly. robots.txt allows the four named search bots
@@ -71,7 +71,7 @@ Items 9, 10 and 12 need Phil's logins. The team writes exact click-by-click step
 - [ ] Test signup reaches the provider, consent wording is shown at the point of signup, and the confirmation or welcome email arrives
 - [ ] Form rejects bad input and survives a rapid-fire submit test
 - [ ] Search Console shows the property verified and the sitemap submitted
-- [ ] Umami receives a real pageview from the live domain (was GA4, see D-013)
+- [ ] Umami receives a real pageview from the live domain (was GA4, see D-013). Tracker behaviour verified in a browser 2026-11-18 with sends intercepted; real count not yet seen
 - [ ] Three social accounts exist, each with the hub link in bio
 - [ ] Week-1 row is in the audience tracker
 - [ ] A new empty page can be added at `/tools/test-tool` using the shared layout in under 10 minutes (then removed)
