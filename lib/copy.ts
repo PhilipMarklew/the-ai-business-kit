@@ -52,21 +52,18 @@
  */
 const brand = "The AI Business Kit";
 
-/** TODO(d2): the one place the email provider is named. Change it here. */
+/** The one place the email provider is named. Kit Free, decision D-006. */
 const provider = "Kit";
 
 /**
- * TODO(d2): provider-specific facts, written for Kit from the D2 comparison in
- * docs/specs/S00-1-architecture.md (Kit DPA, kit.com/dpa, checked 17 Nov 2026).
- * Re-check each line against the chosen provider's DPA before launch.
- * Buttondown, if chosen: its data location, sub-processors and transfer terms
- * differ, and its double opt-in is on by default for API signups.
+ * Provider-specific facts, written for Kit (see the Kit note in the header).
+ * If the provider ever changes, re-check each line against its DPA.
  */
 const providerFacts = {
   /** Where the provider stores data. */
   location: "the United States",
   /** The transfer tool the provider's DPA relies on. */
-  transferTool: "the UK International Data Transfer Agreement",
+  transferTool: "the UK International Data Transfer Addendum",
   /** Sub-processors worth naming. Kit's list includes OpenAI. */
   subprocessors: "Its list of service providers includes OpenAI.",
   /** Double opt-in: the provider emails a confirmation link first. */
@@ -237,7 +234,7 @@ Everything is free. There are no subscriptions and no affiliate links. The site 
     privacyLinkText: "Privacy notice",
     /** Sent to the provider as the tag `consent-v2026-11` (architecture D-008). */
     consentVersion: "consent-v2026-11",
-    // TODO(d2): assumes double opt-in, as with Kit. Reword if the provider does not confirm by email.
+    /** Double opt-in is on and confirmed working with Kit. */
     success:
       "Check your inbox. I have sent an email to confirm your address. Click the link in it to finish signing up. If you do not see it in a few minutes, check your spam folder.",
     errors: {

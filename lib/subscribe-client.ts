@@ -1,8 +1,6 @@
 /**
  * Client for POST /api/subscribe, typed exactly to the contract in
  * docs/specs/S00-1-architecture.md (owner: Tomas).
- * TODO(tomas): the endpoint does not exist yet. Until it does, the form shows
- * the provider_unavailable error. Nothing here needs to change when it lands.
  */
 export type SubscribeError =
   | "invalid_email"
