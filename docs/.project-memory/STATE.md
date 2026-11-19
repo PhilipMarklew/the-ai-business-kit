@@ -1,16 +1,14 @@
 # STATE
 
-## Since last session (2026-11-18, later)
-- D-016: site voice is brand-led (no I, no we, Phil as named author only). Organization JSON-LD confirmed; Organization-or-Person question settled. CLAUDE.md updated
-- Copy voice rewrite in progress on feat/s00-1-content-first (Margot, lib/ app/ components/), uncommitted
-- Domain theaibusinesskit.com live on Railway behind Cloudflare; apex canonical, www 301s to apex (D-014)
-- Umami ID set in Railway and .env.local; tracker, opt-out and query stripping verified in a browser (no code changes)
-- Phil excludes own visits with the /privacy opt-out button, per browser; no ?notrack link
-- specs/umami-dashboard-setup.md: Phil completed the dashboard steps 2026-11-18
-- Cloudflare SSL/TLS mode confirmed Full by Phil 2026-11-18
-- D-015: robots.txt in app/robots.ts only; AI training crawlers blocked. Deployed 2026-11-18 (249d42d). Cloudflare Bot Preference Sync off, Training policy Block. Verified: live robots.txt is ours only; training bots 403, search and agent bots 200
-- DECISIONS: added D-014. Handoff and .env.example updated for the domain
-- Railway serves feat/s00-1-content-first (origin tip 431c8aa); main is not merged
+## Since last session (2026-11-19)
+- DECISIONS: D-017 (launch with robots.txt tester + 3 posts; tools stay in this app), D-018 (no pnpm monorepo)
+- New specs/robots-tools-inputs.md: backlog briefs and constraints for one spec covering the K03-T1 tester and K08-T1 generator; read it before planning
+- specs/content-briefs-robots-cloudflare.md: briefs for K08-B5, K08-B6, K08-B7, K03-B4, K03-B5, K08-V3; xlsx Backlog rows 95-100 (local)
+- Pruned old "Earlier" block to archive/2026-11.md. No CLAUDE.md or ARCHITECTURE.md changes
+
+## Settled this week (details in DECISIONS.md and archive/2026-11.md)
+- Domain live behind Cloudflare, SSL Full; Umami verified; Phil opts out of tracking per browser via /privacy (no ?notrack link)
+- Copy voice rewrite (D-016) committed. Railway serves feat/s00-1-content-first (main not merged)
 
 ## Current objective
 S00-1 Site foundations, now scoped as a blog with tools (D-010). Week 1 of 12. Budget about 6 hrs of Phil's time.
@@ -33,11 +31,12 @@ Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance chec
 ## Decisions (see DECISIONS.md)
 - D1 DECIDED (D-009). D3 hosting DECIDED (D-005). D-010 blog scope, D-011 design DECIDED.
 - D2 DECIDED: Kit Free (D-006). D-013 analytics: Umami Cloud.
-- D-016 voice brand-led DECIDED 2026-11-18. Rewrite not yet committed; check privacy still names Phil as controller, consent wording unchanged.
+- D-016 voice brand-led DECIDED; rewrite committed. Check /privacy still names Phil as controller, consent wording unchanged.
+- D-017 launch scope and D-018 no monorepo DECIDED 2026-11-19.
 - D4 consent records: proposed provider only (D-008); Astrid to confirm.
 
 ## Blockers / flags
-- Three draft sample posts in content/posts/ need Phil's approval or replacement before live.
+- Open for Phil: who builds the tester (Phil via Noor tutorial, or Yuki and Tomas). No launch date set. Launch posts K03-B5, K08-B5, K03-B4 (about 6.5 hrs, briefs in specs/content-briefs-robots-cloudflare.md) replace the three drafts in content/posts/. Open: keep "What a customer checks before they pick up the phone" as a fourth post so get-trusted is not empty. Search volumes for the new queries unchecked (Phil, Keyword Planner). Posts already render SignupBand (newsletter CTA); tool links go in once the tester is live. The "AI-bot rules pack" email offer does not exist yet.
 - lib/social.ts: X (x.com/TheAIBizKit) and TikTok (@the.ai.business.ki, added 2026-11-18; auto-generated handle cut at the length limit, Phil plans to rename it, then update the URL here) set; YouTube URL null.
 - Security audit open items: F2 live X-Real-IP spoof and shared-bucket tests (Phil + Quinn; unblocked, site is deployed); F3, F4, F5 (Tomas, deferred by Phil); F6 CSP (Yuki; unblocked, Umami ID is set: script-src cloud.umami.is, connect-src gateway.umami.is). Hardening: server-only on lib/kit.ts, shadcn to devDependencies, COOP header, SSRF pass for the robots.txt tester.
 - Phil to-dos, Umami: dashboard steps DONE. Still open from earlier: IP filter, no Google Ads link, no public share, save Umami DPA and subprocessor PDFs. The signup event counts form submissions; Kit double opt-in makes confirmed subscribers fewer.
@@ -51,10 +50,10 @@ Brief: docs/handoffs/S00-1-site-foundations.md (12 deliverables, acceptance chec
 Current ICO/PECR guidance; Umami Hobby limits and EU region on the live dashboard; email provider free limits (cite page and date).
 
 ## Next steps
-1. Phil: the privacy and Kit to-dos above. Check a real pageview shows in Umami (handoff check still open).
-2. Search Console DONE 2026-11-18. Next: Priya writes Bing Webmaster Tools and IndexNow steps.
-3. Yuki: F6 CSP. Phil + Quinn: F2 live spoof tests.
-4. Merge feat/s00-1-content-first to main (Phil's call on timing); Eleanor and Quinn passes; Lighthouse; Rich Results Test.
-5. Before launch: approve or replace the three draft posts; fill /privacy name and contact; set the YouTube URL in lib/social.ts; resolve newsletter meta TODO(phil).
-6. Priya: week-1 audience tracker row (handoff item 11).
-7. Next build: K03-T1 robots.txt tester (W2-3), with an SSRF pass.
+1. Marcus: one spec for both robots.txt tools, K03-T1 tester and K08-T1 generator, to docs/specs/ (inputs: specs/robots-tools-inputs.md; D-003, D-007, D-015, D-017). Include shared bot list in lib/ and HTTP status per bot with the Cloudflare caveat.
+2. Phil: choose the builder (Noor tutorial, or Yuki and Tomas). Build the tester while Phil writes the three posts.
+3. Viktor: SSRF audit of the tester route. Yuki: F6 CSP. Phil + Quinn: F2 live spoof tests.
+4. Build the AI-bot rules pack (email offer) from the shared bot list; add tool links to posts; then K03-B1 pillar.
+5. Fallback if Phil wants to go live within about 2 weeks: launch with K08-T1 generator (about 6 hrs, no SSRF), add the tester after.
+6. Before launch: Phil's privacy and Kit to-dos above; remove the three drafts; set YouTube URL in lib/social.ts; resolve newsletter meta TODO(phil). Merge feat/s00-1-content-first to main (Phil's timing); Eleanor and Quinn passes; Lighthouse; Rich Results Test.
+7. Priya: week-1 audience tracker row (handoff item 11); Bing Webmaster Tools and IndexNow steps for Phil. Check a real pageview shows in Umami.

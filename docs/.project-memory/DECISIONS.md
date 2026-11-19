@@ -83,3 +83,28 @@ Owner: Phil. Affects: Yuki (robots.ts), K03-T1 tester (use this site as a test c
 Why: first person came from the writing-style-phil skill, not a strategy call. No-face video, no LinkedIn, no outreach or community mean readers cannot get to know Phil, so a personal brand has costs without the main benefit. Brand-led protects Phil's privacy, fits brand-name social accounts, allows help or handover later.
 Shape: pages speak as "The AI Business Kit" or "this site", neutral voice, no "I/me/my", never "we/our/us" (one person, no team). Phil stays as named author ("Written by Phil" byline on guides, one factual line on About) and email sender "Phil at The AI Business Kit". /privacy names Phil as data controller (UK GDPR); rest in brand voice. Consent checkbox wording unchanged (reader's "I"), so no new consent version. Organization JSON-LD confirmed; settles "Organization (or Person)" in handoff item 5.
 Owner: Phil. Affects: Margot (copy rewrite), Yuki (byline, JSON-LD), Tomas (Kit sender name).
+
+## D-017 | 2026-11-19 | Launch with the robots.txt tester and three posts; tools stay in this app
+Why: launch needs at least one tool. Tester (K03-T1) fits D-015 and the get-found theme. Posts K03-B5, K08-B5, K03-B4. Estimate 3-4 weeks at 5-7 hrs/week (12 hrs build, Viktor SSRF pass, 6.5 hrs writing). No launch date set.
+Order: Marcus spec, build tester while Phil writes posts, Viktor audit and Yuki F6 CSP, rules pack and tool links in posts, launch. K03-B1 pillar waits for the tester.
+Fallback: if Phil wants to go live within about 2 weeks, launch with client-side K08-T1 generator (about 6 hrs, no SSRF), add the tester after.
+Tools stay in one Next.js app (D-003 reaffirmed). Upgrade path: a heavy tool moves to its own Railway service with /tools/<slug> routed to it, URL unchanged.
+Owner: Phil. Affects: Marcus (spec), Yuki, Tomas, Noor (builder choice open), Viktor, Margot. Inputs: specs/robots-tools-inputs.md (tester and generator, one spec).
+
+## D-018 | 2026-11-19 | No pnpm monorepo
+Why: one deployable app; shared code works as lib/ imports. Existing pnpm-workspace.yaml is pnpm config, keep it.
+Rejected: monorepo with packages/ (extra tooling, no second consumer).
+Revisit if: a second deployable service appears, or shared code is published as a package.
+Owner: Phil. Affects: Marcus, Yuki, Tomas.
+
+## D-019 | 2026-11-19 | PROPOSED: robots tools structure (tester K03-T1, generator K08-T1)
+Why: the browser parses, so fetched and pasted files share one code path. The server route only fetches. Parser and merge are hand-written for line-level output. Files pass between tools in sessionStorage. Status-per-bot check sits behind its own button and route.
+Rejected: robots-parser (yes/no answers only, last release Feb 2023); a diff library (the merge knows its changes); query-string hand-off (logs, length).
+Shape: tool code together in app/tools/_robots/ (logic/: bots, parse, match, merge, fetch server-only; ui/: components) per Phil; generic SSRF guard in lib/net/safe-fetch.ts (node:https plus request-filtering-agent), lib/read-capped.ts, lib/rate-limit.ts; routes stay at app/api/tools/ (D-003); no app/tools/_shared until a second tool needs it. Spec: docs/specs/robots-tools-build-plan.md (S-002, D11).
+Owner: Marcus, Phil to confirm (open questions Q3, Q4). Affects: Phil (builder), Viktor (SSRF audit), Margot (tools copy).
+
+## D-020 | 2026-11-19 | PROPOSED: tester launches first; estimate revised to about 20 hrs tester, 10 hrs generator
+Why: D-017 needs one tool; the generator reuses the parser. Backlog said 12 and 6; the gap is tests, the SSRF guard and the status check. A safe generator-first fallback (with merge) is about 13 hrs, so it saves little.
+Rejected: both tools at launch (about 2 weeks later); generator without merge (duplicate groups combine and Allow wins ties, so blocks fail).
+Note: step 9 (status per bot) can move to just after launch to save 2.5 hrs.
+Owner: Marcus, Phil to confirm (Q1, Q2). Affects: Priya (launch date), Phil.
